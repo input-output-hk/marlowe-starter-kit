@@ -2,3 +2,10 @@ tmp/
 *.tmp
 *.log
 *.sw?
+.ipynb_checkpoints/
+*.skey
+*.vkey
+*.address
+*.unsigned
+*.signed
+*.json

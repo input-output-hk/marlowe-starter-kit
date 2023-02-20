@@ -2,6 +2,13 @@
 
 This repository is meant to be used with [demeter.run](https://demeter.run) to execute Marlowe contracts using Marlowe Runtime. See the [Marlowe documentation](https://github.com/input-output-hk/marlowe-doc/blob/main/README.md) for more information on Marlowe and Marlowe Runtime.
 
+A Jupyter notebook server for the workbooks and tools in this repository can be launched as follows:
+```console
+$ git clone git@github.com:input-output-hk/marlowe-starter-kit/
+$ cd marlowe-starter-kit
+$ nix run
+```
+
 
 ## Marlowe Runtime Overview
 

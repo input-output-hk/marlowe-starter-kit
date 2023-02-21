@@ -31,3 +31,8 @@ Marlowe Runtime provides backend services for interacting with Marlowe contracts
 ## Lesson 1. Marlowe Runtime\'s Command-Line Interface
 
 The backend services in Marlowe Runtime can be accesses via the command-line using the `marlowe` tool. The example [Zero-Coupon Bond Using Marlowe Runtime's Command-Line Interface](runtime-cli/zcb.ipynb) provides step-by-step instructions on running a contract on the `preprod` public testnet using `marlowe`.
+
+
+## Lesson 2. Marlowe Runtime\'s REST Interface
+
+The backend services in Marlowe Runtime can be accesses via the HTTP REST API served by `marlowe-web-server`. The example [Zero-Coupon Bond Using Marlowe Runtime's REST Interface](runtime-rest/zcb.ipynb) provides step-by-step instructions on running a contract on the `preprod` public testnet using REST endpoints.

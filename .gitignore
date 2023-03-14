@@ -3,6 +3,7 @@ tmp/
 *.log
 *.sw?
 .ipynb_checkpoints/
+.jupyter/
 *.skey
 *.vkey
 *.address

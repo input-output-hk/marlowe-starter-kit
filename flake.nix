@@ -67,6 +67,9 @@
           program = "${jupyterlab}/bin/jupyter-lab";
           type = "app";
         };
+        hydraJobs = {
+          default = packages.default;
+        };
       }
     );
 }

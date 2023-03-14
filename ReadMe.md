@@ -1,8 +1,8 @@
 # Starter Kit for Marlowe Using Demeter.Run
 
-This repository is meant to be used with [demeter.run](https://demeter.run) to execute Marlowe contracts using Marlowe Runtime. See the [Marlowe documentation](https://github.com/input-output-hk/marlowe-doc/blob/main/README.md) for more information on Marlowe and Marlowe Runtime.
+This repository is meant to be used with [demeter.run](https://demeter.run) to execute Marlowe contracts using Marlowe Runtime, or with a docker deployment of Marlowe Runtime. See the [Marlowe documentation](https://github.com/input-output-hk/marlowe-doc/blob/main/README.md) for more information on Marlowe and Marlowe Runtime.
 
-A Jupyter notebook server for the workbooks and tools in this repository can be launched as follows:
+If you have the [Nix package manager installed](https://nix.dev/tutorials/install-nix) with [Nix flakes support enabled](https://nixos.wiki/wiki/Flakes#Enable_flakes), you can launch a Jupyter notebook server for the workbooks and tools as follows:
 ```console
 $ git clone git@github.com:input-output-hk/marlowe-starter-kit/
 $ cd marlowe-starter-kit
@@ -10,29 +10,28 @@ $ nix run
 ```
 
 
-## Marlowe Runtime Overview
+## Marlowe Tools
 
-Marlowe Runtime provides backend services for interacting with Marlowe contracts on the Cardano blockchain. There are several methods for executing Marlowe contracts:
+Three alternative workflows are available for running Marlowe contracts:
 
-- Via Marlowe Runtime
-  -  REST API and (coming soon) WebSockets API using `marlowe-web-server` backend
-  -  Command line using the `marlowe` tool
-  -  JSON pipe using the `marlowe-pipe` tool
-  -  Haskell code using the `marlowe-apps` library
-- Via Marlowe CLI
-  - Command line using `marlowe-cli run` (high-level interface)
-  - Command line using `marlowe-cli transaction` (low-level interface)
-- Via Cardano CLI
-  - Command line using `cardano-cli transaction build`
-  
-![Marlowe Runtime architecture](architecture.png)
+1. Marlowe CLI (`marlowe-cli`) for lightweight experiments with Marlowe transactions.
+2. Marlowe Runtime CLI (`marlowe`) for non-web applications that use the Marlowe Runtime backend services.
+3. Marlowe Runtime Web (`marlowe-web-server`) for web applications that use Marlowe Runtime backend services.
+
+Marlowe Runtime provides a variety of transaction-building, UTxO management, querying, and submission services for using Marlowe contracts: this makes it easy to run Marlowe contracts without attending to the details of the Cardano ledger and Plutus smart contracts. On the contrary, Marlowe CLI does not support querying and UTxO management, so it is best suited for experienced Cardano developers.
+
+![Tools for Running and Querying Marlowe Contracts](images/marlowe-tools.png)
 
 
-## Lesson 1. Marlowe Runtime\'s Command-Line Interface
+### Marlowe Runtime
 
-The backend services in Marlowe Runtime can be accesses via the command-line using the `marlowe` tool. The example [Zero-Coupon Bond Using Marlowe Runtime's Command-Line Interface](runtime-cli/zcb.ipynb) provides step-by-step instructions on running a contract on the `preprod` public testnet using `marlowe`.
+Marlowe Runtime consists of several backend services and work together with a web server.
+
+![The architecture of Marlowe Runtime](images/runtime-architecture.png)
 
 
-## Lesson 2. Marlowe Runtime\'s REST Interface
+## Lessons
 
-The backend services in Marlowe Runtime can be accesses via the HTTP REST API served by `marlowe-web-server`. The example [Zero-Coupon Bond Using Marlowe Runtime's REST Interface](runtime-rest/zcb.ipynb) provides step-by-step instructions on running a contract on the `preprod` public testnet using REST endpoints.
+- [Lesson 0. Preliminaries](00-preliminaries.ipynb): This lesson describes how to create and fund the Cardano addresses used in the lessons in this starter kit.
+- [Lesson 1. Marlowe Runtime's Command-Line Interface](01-runtime-cli/ReadMe.ipynb): This lesson shows how to use Marlowe Runtime to execute a zero-coupon bond contract using the command line for a Cardano testnet.
+- [Lesson 2. Marlowe Runtime's REST Interface](02-runtime-rest/ReadMe.ipynb): This lesson shows how to use the REST API for Marlowe Runtime to execute a zero-coupon bond contract on a Cardano testnet.

@@ -40,10 +40,14 @@
           mp.pkgs.cardano.packages.cardano-wallet
           p.gcc
           p.z3
+          p.git
+          p.podman
+          p.podman-compose
           p.coreutils
           p.curl
           p.gnused
           p.jq
+          p.json2yaml
         ];
         inherit (jupyenv.lib.${system}) mkJupyterlabNew;
         jupyterlab = mkJupyterlabNew ({...}: {

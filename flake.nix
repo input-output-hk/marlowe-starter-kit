@@ -27,6 +27,7 @@
   outputs = { self, flake-compat, flake-utils, nixpkgs, jupyenv, marlowe }:
     flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
       let
+        pkgs = nixpkgs.legacyPackages.${system};
         mp = marlowe.packages.${system};
         extraPackages = p: [
           mp.marlowe-rt
@@ -66,11 +67,19 @@
       in rec {
         packages = {
           inherit jupyterlab;
+          marlowe = mp.marlowe-rt;
+          marlowe-cli = mp.marlowe-cli;
+          marlowe-pipe = mp.marlowe.haskell.packages.marlowe-apps.components.exes.marlowe-pipe;
         };
         packages.default = jupyterlab;
-        apps.default = {
-          program = "${jupyterlab}/bin/jupyter-lab";
-          type = "app";
+        apps = {
+          default = {
+            program = "${jupyterlab}/bin/jupyter-lab";
+            type = "app";
+          };
+        };
+        devShell = pkgs.mkShell {
+          buildInputs = extraPackages pkgs;
         };
         hydraJobs = {
           default = packages.default;

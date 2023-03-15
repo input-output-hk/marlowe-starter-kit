@@ -48,6 +48,7 @@
           p.gnused
           p.jq
           p.json2yaml
+          p.yaml2json
         ];
         inherit (jupyenv.lib.${system}) mkJupyterlabNew;
         jupyterlab = mkJupyterlabNew ({...}: {

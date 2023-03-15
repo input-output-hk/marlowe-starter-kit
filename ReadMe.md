@@ -19,12 +19,41 @@ If you are unfamiliar with the Marlowe smart-contract language or with the Carda
 1. [The Marlowe Language](https://marlowe-finance.io/)
 2. [Cardano's Extended UTxO Model](https://docs.cardano.org/learn/eutxo-explainer).
 
-If you have the [Nix package manager installed](https://nix.dev/tutorials/install-nix) with [Nix flakes support enabled](https://nixos.wiki/wiki/Flakes#Enable_flakes), you can launch a Jupyter notebook server for the workbooks and tools as follows:
+
+### Nix
+
+If you have the [Nix package manager installed](https://nix.dev/tutorials/install-nix) with [Nix flakes support enabled](https://nixos.wiki/wiki/Flakes#Enable_flakes), you can launch a Jupyter notebook server, open a development environment, or build the tools.
+
+
+#### Launching a Jupter Server for Marlowe Tools
+
+You can launch a Jupyter notebook server for the workbooks and tools as follows:
 
 ```console
 $ git clone git@github.com:input-output-hk/marlowe-starter-kit/
 $ cd marlowe-starter-kit
 $ nix run
+```
+
+#### Opening a Development Shell
+
+One can also enter a Nix development shell that contains the Marlowe tools:
+
+```console
+$ git clone git@github.com:input-output-hk/marlowe-starter-kit/
+$ cd marlowe-starter-kit
+$ nix develop
+```
+
+
+#### Building individual Tools
+
+One can build individual Marlowe tools using Nix:
+
+```bash
+nix build github:input-output-hk/marlowe-starter-kit/#marlowe      -o build/marlowe
+nix build github:input-output-hk/marlowe-starter-kit/#marlowe-cli  -o build/marlowe-cli
+nix build github:input-output-hk/marlowe-starter-kit/#marlowe-pipe -o build/marlowe-pipe
 ```
 
 

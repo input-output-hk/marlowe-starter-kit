@@ -6,7 +6,8 @@
         - [1. ZCB using the Marlowe Runtime command-line client](01-runtime-cli/ReadMe.ipynb)
         - [2. ZCB using the Marlowe Runtime REST API](02-runtime-rest/ReadMe.ipynb)
         - [3. ZCB using the Marlowe command-line tool](03-marlowe-cli/ReadMe.ipynb)
-- Additional Information
+    - [4. Escrow using Marlow Runtime REST API](04-escrow-rest/ReadMe.ipynb)
+- [Additional Information](#additional-information)
     - [Overview of Marlowe Tools](#marlowe-tools)
     - [Overview of Marlowe Runtime](#marlowe-runtime)
     - [Using Marlowe Safely](#using-marlowe-safely)
@@ -29,7 +30,7 @@ If you are unfamiliar with the Marlowe smart-contract language or with the Carda
 - [Lesson 1. Marlowe Runtime's Command-Line Interface](01-runtime-cli/ReadMe.ipynb): This lesson shows how to use Marlowe Runtime to execute a zero-coupon bond contract using the command line for a Cardano testnet.
 - [Lesson 2. Marlowe Runtime's REST Interface](02-runtime-rest/ReadMe.ipynb): This lesson shows how to use the REST API for Marlowe Runtime to execute a zero-coupon bond contract on a Cardano testnet.
 - [Lesson 3. Marlowe CLI](03-marlowe-cli/ReadMe.ipynb): This lesson shows how to use the Marlowe CLI without Marlowe Runtime to execute a zero-coupon bond contract on a Cardano testnet.
-
+- [Lesson 4. Escrow](04-escrow-rest/ReadMe.ipynb): This lessons shows how to use the REST API of Marlowe Runtime to execute an escrow contract on a Cardano testnet.
 
 
 ## Additional Information
@@ -61,7 +62,7 @@ If one plans to run a Marlowe contract on the Cardano `mainnet`, then one should
 
 Here are the steps for checking the safety of a contract:
 
-1. Understand the [Marlowe Language](https://marlowe-finance.io/)
+1. Understand the [Marlowe Language](https://marlowe-finance.io/).
 2. Understand Cardano\'s [Extended UTxO Model](https://docs.cardano.org/learn/eutxo-explainer).
 3. Read and understand the [Marlowe Best Practices Guide](https://github.com/input-output-hk/marlowe-cardano/blob/main/marlowe/best-practices.md).
 4. Read and understand the [Marlowe Security Guide](https://github.com/input-output-hk/marlowe-cardano/blob/main/marlowe/security.md).

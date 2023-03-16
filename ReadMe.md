@@ -1,18 +1,19 @@
 # Starter Kit for Marlowe
 
-- [Marlowe Tools](#marlowe-tools)
-- [Marlowe Runtime](#marlowe-runtime)
-- [Using Marlowe Safely](#using-marlowe-safely)
 - [Lessons](#lessons)
     - [0. Preliminaries](./00-preliminaries.ipynb)
     - [1. Zero-Coupon Bond using the Marlowe Runtime command-line client](01-runtime-cli/ReadMe.ipynb)
     - [2. Zero-Coupon Bond using the Marlowe Runtime REST API](02-runtime-rest/ReadMe.ipynb)
-
+- Additional Information
+    - [Overview of Marlowe Tools](#marlowe-tools)
+    - [Overview of Marlowe Runtime](#marlowe-runtime)
+    - [Using Marlowe Safely](#using-marlowe-safely)
+    - [Manual installation using Nix](#manual-installation-using-nix)
 
 ---
 
 
-This repository is meant to be used with [demeter.run](https://demeter.run) to execute Marlowe contracts using Marlowe Runtime, or with a docker deployment of Marlowe Runtime. See the [Marlowe documentation](https://github.com/input-output-hk/marlowe-doc/blob/main/README.md) for more information on Marlowe and Marlowe Runtime.
+This repository is meant to be used with [demeter.run](https://demeter.run) to execute Marlowe contracts using Marlowe Runtime, or with a docker deployment of Marlowe Runtime.
 
 If you are unfamiliar with the Marlowe smart-contract language or with the Cardano blockchain, you may want to familiarize yourself with the following information:
 
@@ -20,44 +21,18 @@ If you are unfamiliar with the Marlowe smart-contract language or with the Carda
 2. [Cardano's Extended UTxO Model](https://docs.cardano.org/learn/eutxo-explainer).
 
 
-### Nix
+## Lessons
 
-If you have the [Nix package manager installed](https://nix.dev/tutorials/install-nix) with [Nix flakes support enabled](https://nixos.wiki/wiki/Flakes#Enable_flakes), you can launch a Jupyter notebook server, open a development environment, or build the tools.
-
-
-#### Launching a Jupter Server for Marlowe Tools
-
-You can launch a Jupyter notebook server for the workbooks and tools as follows:
-
-```console
-$ git clone git@github.com:input-output-hk/marlowe-starter-kit/
-$ cd marlowe-starter-kit
-$ nix run
-```
-
-#### Opening a Development Shell
-
-One can also enter a Nix development shell that contains the Marlowe tools:
-
-```console
-$ git clone git@github.com:input-output-hk/marlowe-starter-kit/
-$ cd marlowe-starter-kit
-$ nix develop
-```
+- [Lesson 0. Preliminaries](00-preliminaries.ipynb): This lesson describes how to create and fund the Cardano addresses used in the lessons in this starter kit.
+- [Lesson 1. Marlowe Runtime's Command-Line Interface](01-runtime-cli/ReadMe.ipynb): This lesson shows how to use Marlowe Runtime to execute a zero-coupon bond contract using the command line for a Cardano testnet.
+- [Lesson 2. Marlowe Runtime's REST Interface](02-runtime-rest/ReadMe.ipynb): This lesson shows how to use the REST API for Marlowe Runtime to execute a zero-coupon bond contract on a Cardano testnet.
 
 
-#### Building individual Tools
 
-One can build individual Marlowe tools using Nix:
-
-```bash
-nix build github:input-output-hk/marlowe-starter-kit/#marlowe      -o build/marlowe
-nix build github:input-output-hk/marlowe-starter-kit/#marlowe-cli  -o build/marlowe-cli
-nix build github:input-output-hk/marlowe-starter-kit/#marlowe-pipe -o build/marlowe-pipe
-```
+## Additional Information
 
 
-## Marlowe Tools
+### Marlowe Tools
 
 Three alternative workflows are available for running Marlowe contracts:
 
@@ -70,14 +45,14 @@ Marlowe Runtime provides a variety of transaction-building, UTxO management, que
 ![Tools for Running and Querying Marlowe Contracts](images/marlowe-tools.png)
 
 
-## Marlowe Runtime
+### Marlowe Runtime
 
-Marlowe Runtime consists of several backend services and work together with a web server.
+Marlowe Runtime consists of several backend services and work together with a web server. See the [Marlowe documentation](https://github.com/input-output-hk/marlowe-doc/blob/main/README.md) for more information on Marlowe Runtime.
 
 ![The architecture of Marlowe Runtime](images/runtime-architecture.png)
 
 
-## Using Marlowe Safely
+### Using Marlowe Safely
 
 If one plans to run a Marlowe contract on the Cardano `mainnet`, then one should check its safety before creating it, so that there is no chance of losing funds.
 
@@ -92,8 +67,53 @@ Here are the steps for checking the safety of a contract:
 7. Run *all execution paths* of the contract on a [Cardano testnet](https://docs.cardano.org/cardano-testnet/overview).
 
 
-## Lessons
+### Manual Installation Using Nix
 
-- [Lesson 0. Preliminaries](00-preliminaries.ipynb): This lesson describes how to create and fund the Cardano addresses used in the lessons in this starter kit.
-- [Lesson 1. Marlowe Runtime's Command-Line Interface](01-runtime-cli/ReadMe.ipynb): This lesson shows how to use Marlowe Runtime to execute a zero-coupon bond contract using the command line for a Cardano testnet.
-- [Lesson 2. Marlowe Runtime's REST Interface](02-runtime-rest/ReadMe.ipynb): This lesson shows how to use the REST API for Marlowe Runtime to execute a zero-coupon bond contract on a Cardano testnet.
+When using Marlowe tools within [demeter.run](http://demeter.run/), nothing needs to be installed.
+
+If you are not using [demeter.run](http://demeter.run/) and have the [Nix package manager installed](https://nix.dev/tutorials/install-nix) with [Nix flakes support enabled](https://nixos.wiki/wiki/Flakes#Enable_flakes), you can launch a Jupyter notebook server, open a development environment, or build the tools.
+
+
+#### Launching a Jupyter Server for Marlowe Tools
+
+One can launch a Jupyter notebook server for the workbooks and tools as follows:
+
+```console
+$ git clone git@github.com:input-output-hk/marlowe-starter-kit/
+$ cd marlowe-starter-kit
+$ nix run
+```
+
+One can even run a Jupyter notebook server with Marlowe tools already installed (but no example notebooks) without manually cloning this repository:
+
+```bash
+nix run github:input-output-hk/marlowe-starter-kit
+```
+
+
+#### Opening a Development Shell
+
+One can also enter a Nix development shell that contains the Marlowe tools:
+
+```console
+$ git clone git@github.com:input-output-hk/marlowe-starter-kit/
+$ cd marlowe-starter-kit
+$ nix develop
+```
+
+This can also be done without cloning this repository:
+
+```bash
+nix develop github:input-output-hk/marlowe-starter-kit
+```
+
+
+#### Building individual Tools
+
+One can build individual Marlowe tools using Nix:
+
+```bash
+nix build github:input-output-hk/marlowe-starter-kit/#marlowe      -o build/marlowe
+nix build github:input-output-hk/marlowe-starter-kit/#marlowe-cli  -o build/marlowe-cli
+nix build github:input-output-hk/marlowe-starter-kit/#marlowe-pipe -o build/marlowe-pipe
+```

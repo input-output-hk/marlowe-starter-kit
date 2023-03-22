@@ -3,11 +3,13 @@
 
   nixConfig = {
     extra-substituters = [
+      "https://cache.zw3rk.com"
       "https://cache.iog.io"
       "https://hydra.iohk.io"
       "https://tweag-jupyter.cachix.org"
     ];
     extra-trusted-public-keys = [
+      "loony-tools:pr9m4BkM/5/eSTZlkQyRt57Jz7OMBxNSUiMC4FkcNfk="
       "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
       "tweag-jupyter.cachix.org-1:UtNH4Zs6hVUFpFBTLaA4ejYavPo5EFFqgd7G7FxGW9g="
     ];

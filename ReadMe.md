@@ -1,13 +1,13 @@
 # Starter Kit for Marlowe
 
 - [Lessons](#lessons)
-    - [0. Preliminaries](./00-preliminaries.md)
+    - [0. Preliminaries](00-preliminaries.md)
     - Zero-Coupon Bond (ZCB)
-        - [1. ZCB using the Marlowe Runtime command-line client](01-runtime-cli/ReadMe.ipynb)
-        - [2. ZCB using the Marlowe Runtime REST API](02-runtime-rest/ReadMe.ipynb)
-        - [3. ZCB using the Marlowe command-line tool](03-marlowe-cli/ReadMe.ipynb)
-    - [4. Escrow using Marlow Runtime REST API](04-escrow-rest/ReadMe.ipynb)
-    - [5. Swap of Ada for Djed using Marlowe Runtime Rest API](05-swap-rest/ReadMe.ipynb)
+        - [1. ZCB using the Marlowe Runtime command-line client](01-runtime-cli.ipynb)
+        - [2. ZCB using the Marlowe Runtime REST API](02-runtime-rest.ipynb)
+        - [3. ZCB using the Marlowe command-line tool](03-marlowe-cli.ipynb)
+    - [4. Escrow using Marlow Runtime REST API](04-escrow-rest.ipynb)
+    - [5. Swap of Ada for Djed using Marlowe Runtime Rest API](05-swap-rest.ipynb)
 - [Additional Information](#additional-information)
     - [Overview of Marlowe Tools](#marlowe-tools)
     - [Overview of Marlowe Runtime](#marlowe-runtime)
@@ -28,11 +28,11 @@ If you are unfamiliar with the Marlowe smart-contract language or with the Carda
 ## Lessons
 
 - [Lesson 0. Preliminaries](00-preliminaries.md): This lesson describes how to create and fund the Cardano addresses used in the lessons in this starter kit.
-- [Lesson 1. Marlowe Runtime's Command-Line Interface](01-runtime-cli/ReadMe.ipynb): This lesson shows how to use Marlowe Runtime to execute a zero-coupon bond contract using the command line for a Cardano testnet.
-- [Lesson 2. Marlowe Runtime's REST Interface](02-runtime-rest/ReadMe.ipynb): This lesson shows how to use the REST API for Marlowe Runtime to execute a zero-coupon bond contract on a Cardano testnet.
-- [Lesson 3. Marlowe CLI](03-marlowe-cli/ReadMe.ipynb): This lesson shows how to use the Marlowe CLI without Marlowe Runtime to execute a zero-coupon bond contract on a Cardano testnet.
-- [Lesson 4. Escrow](04-escrow-rest/ReadMe.ipynb): This lesson shows how to use the REST API of Marlowe Runtime to execute an escrow contract on a Cardano testnet.
-- [Lesson 5. Swap](05-swap-rest/ReadMe.ipynb): This lesson shows how to use the REST API of Marlowe Runtime to execute a swap contract for ada and djed on a Cardano testnet.
+- [Lesson 1. Marlowe Runtime's Command-Line Interface](01-runtime-cli.ipynb): This lesson shows how to use Marlowe Runtime to execute a zero-coupon bond contract using the command line for a Cardano testnet.
+- [Lesson 2. Marlowe Runtime's REST Interface](02-runtime-rest.ipynb): This lesson shows how to use the REST API for Marlowe Runtime to execute a zero-coupon bond contract on a Cardano testnet.
+- [Lesson 3. Marlowe CLI](03-marlowe-cli.ipynb): This lesson shows how to use the Marlowe CLI without Marlowe Runtime to execute a zero-coupon bond contract on a Cardano testnet.
+- [Lesson 4. Escrow](04-escrow-rest.ipynb): This lesson shows how to use the REST API of Marlowe Runtime to execute an escrow contract on a Cardano testnet.
+- [Lesson 5. Swap](05-swap-rest.ipynb): This lesson shows how to use the REST API of Marlowe Runtime to execute a swap contract for ada and djed on a Cardano testnet.
 
 
 ## Additional Information

@@ -6247,16 +6247,15 @@
         "tullia": "tullia_3"
       },
       "locked": {
-        "lastModified": 1678745000,
-        "narHash": "sha256-SBelXItalzVSohr38rIaNJQcIQrErfKdlLKmMCKMc9A=",
+        "lastModified": 1679505706,
+        "narHash": "sha256-RNlx+0VxJ5i3zBYDsEsc1pKho5O1Vrlrb4z93+UZUVs=",
         "owner": "input-output-hk",
         "repo": "marlowe-cardano",
-        "rev": "27a3e32bb17c2a87ab16b9921554c915bb197bd5",
+        "rev": "547043e0046800f4425d8b7c701bcd7ec44479fb",
         "type": "github"
       },
       "original": {
         "owner": "input-output-hk",
-        "ref": "docker-20230313",
         "repo": "marlowe-cardano",
         "type": "github"
       }

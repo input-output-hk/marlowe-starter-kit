@@ -23,7 +23,7 @@
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     jupyenv.url = "github:tweag/jupyenv";
-    marlowe.url = "github:input-output-hk/marlowe-cardano/docker-20230313";
+    marlowe.url = "github:input-output-hk/marlowe-cardano";
   };
 
   outputs = { self, flake-compat, flake-utils, nixpkgs, jupyenv, marlowe }:

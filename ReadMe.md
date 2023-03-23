@@ -17,7 +17,7 @@
 ---
 
 
-This repository is meant to be used with [demeter.run](https://demeter.run) to execute Marlowe contracts using Marlowe Runtime, or with a docker deployment of Marlowe Runtime. Alternatively, one can [deploy Marlowe Runtime locally with docker](docker.ipynb).
+This repository is meant to be used with [demeter.run](https://demeter.run) to execute Marlowe contracts using Marlowe Runtime, or with a docker deployment of Marlowe Runtime. Alternatively, one can [deploy Marlowe Runtime locally with docker](docker.md).
 
 If you are unfamiliar with the Marlowe smart-contract language or with the Cardano blockchain, you may want to familiarize yourself with the following information:
 

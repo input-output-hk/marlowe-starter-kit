@@ -22,7 +22,7 @@
 
 ## Setup
 
-This repository is meant to be used with [demeter.run](https://demeter.run) to execute Marlowe contracts using Marlowe Runtime, or with a docker deployment of Marlowe Runtime. Alternatively, one can [deploy Marlowe Runtime locally with docker](docker.md) [📹](https://youtu.be/oRPTe5zbZBU).
+This repository is meant to be used with [demeter.run](https://demeter.run) to execute Marlowe contracts using Marlowe Runtime, or with another similar cloud deployment of Marlowe Runtime. Alternatively, one can [deploy Marlowe Runtime locally with docker](docker.md) [📹](https://youtu.be/oRPTe5zbZBU).
 
 If you are unfamiliar with the Marlowe smart-contract language or with the Cardano blockchain, you may want to familiarize yourself with the following information:
 
@@ -67,7 +67,7 @@ Marlowe Runtime consists of several backend services and work together with a we
 
 If one plans to run a Marlowe contract on the Cardano `mainnet`, then one should check its safety before creating it, so that there is no chance of losing funds.
 
-Here are the steps for checking the safety of a contract:
+Here are the steps for checking the safety of a Marlowe contract:
 
 1. Understand the [Marlowe Language](https://marlowe-finance.io/).
 2. Understand Cardano\'s [Extended UTxO Model](https://docs.cardano.org/learn/eutxo-explainer).

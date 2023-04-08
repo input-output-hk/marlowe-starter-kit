@@ -1,3 +1,0 @@
-[submodule "marlowe-compose"]
-	path = marlowe-compose
-	url = git@github.com:bwbush/marlowe-compose.git

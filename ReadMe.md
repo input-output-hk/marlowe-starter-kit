@@ -48,7 +48,7 @@ If you are unfamiliar with the Marlowe smart-contract language or with the Carda
 Three alternative workflows are available for running Marlowe contracts:
 
 1. Marlowe CLI (`marlowe-cli`) for lightweight experiments with Marlowe transactions.
-2. Marlowe Runtime CLI (`marlowe`) for non-web applications that use the Marlowe Runtime backend services.
+2. Marlowe Runtime CLI (`marlowe-runtime-cli`) for non-web applications that use the Marlowe Runtime backend services.
 3. Marlowe Runtime Web (`marlowe-web-server`) for web applications that use Marlowe Runtime backend services.
 
 Marlowe Runtime provides a variety of transaction-building, UTxO management, querying, and submission services for using Marlowe contracts: this makes it easy to run Marlowe contracts without attending to the details of the Cardano ledger and Plutus smart contracts. On the contrary, Marlowe CLI does not support querying and UTxO management, so it is best suited for experienced Cardano developers.
@@ -124,7 +124,7 @@ nix develop github:input-output-hk/marlowe-starter-kit
 One can build individual Marlowe tools using Nix:
 
 ```bash
-nix build github:input-output-hk/marlowe-starter-kit/#marlowe      -o build/marlowe
-nix build github:input-output-hk/marlowe-starter-kit/#marlowe-cli  -o build/marlowe-cli
-nix build github:input-output-hk/marlowe-starter-kit/#marlowe-pipe -o build/marlowe-pipe
+nix build github:input-output-hk/marlowe-starter-kit/#marlowe-runtime-cli -o build/marlowe-runtime-cli
+nix build github:input-output-hk/marlowe-starter-kit/#marlowe-cli         -o build/marlowe-cli
+nix build github:input-output-hk/marlowe-starter-kit/#marlowe-pipe        -o build/marlowe-pipe
 ```

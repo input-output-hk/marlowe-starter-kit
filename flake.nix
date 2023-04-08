@@ -69,7 +69,7 @@
       in rec {
         packages = {
           inherit jupyterlab;
-          marlowe = mp.marlowe-rt;
+          marlowe-runtime-cli = mp.marlowe-rt;
           marlowe-cli = mp.marlowe-cli;
           marlowe-pipe = mp.marlowe.haskell.packages.marlowe-apps.components.exes.marlowe-pipe;
         };

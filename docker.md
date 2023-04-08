@@ -12,14 +12,14 @@ A [video of deploying Marlowe Runtime locally using docker compose](https://yout
 
 The various Marlowe tools use [environment variables](https://en.wikipedia.org/wiki/Environment_variable) to specify the values of parameters and the network locations of services. Only the enviornment variables for the particular tool(s) being used need be set; the others may be left unset or ignored. The following table summarizes the tools' use of these settings.
 
-| Workflow            | Tool          | Environment Variable        | Typical Value | Description                                                                                     |
-|---------------------|---------------|-----------------------------|---------------|-------------------------------------------------------------------------------------------------|
-| Marlowe CLI         | `marlowe-cli` | `CARDANO_NODE_SOCKET_PATH`  | `node.socket` | Location of the socket for the `cardano-node` service.                                          |
-|                     |               | `CARDANO_TESTNET_MAGIC`     | 2             | The "magic number" for the Cardano testnet being used, or not set if `mainnet` is being used.   |
-| Marlowe Runtime CLI | `marlowe`     | `MARLOWE_RT_HOST`           | `127.0.0.1`   | The host machine's IP address for Marlowe Runtime.                                              |
-|                     |               | `MARLOWE_RT_PORT`           | `3700`        | The port number for the `marlowe-proxy` service on the Marlowe Runtime host machine.            |
-| Marlowe Runtime Web | `curl` etc.   | `MARLOWE_RT_WEBSERVER_HOST` | `127.0.0.1`   | The host machine's IP address for Marlowe Runtime's web server.                                 |
-|                     |               | `MARLOWE_RT_WEBSERVER_PORT` | `8080`        | The port number for the `marlowe-web-server` service on the Marlowe Runtime web server machine. |
+| Workflow            | Tool                  | Environment Variable        | Typical Value | Description                                                                                     |
+|---------------------|-----------------------|-----------------------------|---------------|-------------------------------------------------------------------------------------------------|
+| Marlowe CLI         | `marlowe-cli`         | `CARDANO_NODE_SOCKET_PATH`  | `node.socket` | Location of the socket for the `cardano-node` service.                                          |
+|                     |                       | `CARDANO_TESTNET_MAGIC`     | 2             | The "magic number" for the Cardano testnet being used, or not set if `mainnet` is being used.   |
+| Marlowe Runtime CLI | `marlowe-runtime-cli` | `MARLOWE_RT_HOST`           | `127.0.0.1`   | The host machine's IP address for Marlowe Runtime.                                              |
+|                     |                       | `MARLOWE_RT_PORT`           | `3700`        | The port number for the `marlowe-proxy` service on the Marlowe Runtime host machine.            |
+| Marlowe Runtime Web | `curl` etc.           | `MARLOWE_RT_WEBSERVER_HOST` | `127.0.0.1`   | The host machine's IP address for Marlowe Runtime's web server.                                 |
+|                     |                       | `MARLOWE_RT_WEBSERVER_PORT` | `8080`        | The port number for the `marlowe-web-server` service on the Marlowe Runtime web server machine. |
 
 
 ## Deploying Marlowe Runtime
@@ -179,7 +179,7 @@ case "$NETWORK" in
     ;;
 esac
 
-# Only required for `marlowe`.
+# Only required for `marlowe-runtime-cli`.
 export MARLOWE_RT_HOST="127.0.0.1"
 export MARLOWE_RT_PORT=3700
 
@@ -210,10 +210,10 @@ syncProgress: '100.00'
 
 ### Marlowe Runtime Proxy Service
 
-Check that the `marlowe` command can communicate with the Marlowe Runtime backend services by querying the history of one of the Marlowe contracts that has previously been executed on the blockchain.
+Check that the `marlowe-runtime-cli` command can communicate with the Marlowe Runtime backend services by querying the history of one of the Marlowe contracts that has previously been executed on the blockchain.
 
 ```bash
-marlowe log "f06e4b760f2d9578c8088ea5289ba6276e68ae3cbaf5ad27bcfc77dc413890db#1"
+marlowe-runtime-cli log "f06e4b760f2d9578c8088ea5289ba6276e68ae3cbaf5ad27bcfc77dc413890db#1"
 ```
 
 ```console

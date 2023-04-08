@@ -23,7 +23,7 @@
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     jupyenv.url = "github:tweag/jupyenv";
-    marlowe.url = "github:input-output-hk/marlowe-cardano";
+    marlowe.url = "github:input-output-hk/marlowe-cardano/8cbf483f45e568e1c5ad7eb31432d89b363a5690";  # tag=runtime@v0.0.1
   };
 
   outputs = { self, flake-compat, flake-utils, nixpkgs, jupyenv, marlowe }:
@@ -32,7 +32,7 @@
         pkgs = nixpkgs.legacyPackages.${system};
         mp = marlowe.packages.${system};
         extraPackages = p: [
-          mp.marlowe-rt
+          mp.marlowe-runtime-cli
           mp.marlowe-cli
           mp.marlowe.haskell.packages.marlowe-apps.components.exes.marlowe-finder
           mp.marlowe.haskell.packages.marlowe-apps.components.exes.marlowe-oracle
@@ -69,7 +69,7 @@
       in rec {
         packages = {
           inherit jupyterlab;
-          marlowe-runtime-cli = mp.marlowe-rt;
+          marlowe-runtime-cli = mp.marlowe-runtime-cli;
           marlowe-cli = mp.marlowe-cli;
           marlowe-pipe = mp.marlowe.haskell.packages.marlowe-apps.components.exes.marlowe-pipe;
         };

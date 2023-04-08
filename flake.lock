@@ -3,11 +3,11 @@
     "CHaP": {
       "flake": false,
       "locked": {
-        "lastModified": 1678700984,
-        "narHash": "sha256-HzXVzCPJSnJGxatqOmbcLc23qDHvF4itTkqk4oxi3dk=",
+        "lastModified": 1680545219,
+        "narHash": "sha256-JeUh3MUB/Gc2QsnFaHigt6H4wG/yTxOU4WHHgvZryWg=",
         "owner": "input-output-hk",
         "repo": "cardano-haskell-packages",
-        "rev": "81f266cd592aa855cc07b410cc1c16f7ae031da7",
+        "rev": "4a9d10b2ecc88a5df933e54a150339e5a97319e2",
         "type": "github"
       },
       "original": {
@@ -3314,11 +3314,11 @@
     },
     "flake-utils": {
       "locked": {
-        "lastModified": 1678901627,
-        "narHash": "sha256-U02riOqrKKzwjsxc/400XnElV+UtPUQWpANPlyazjH0=",
+        "lastModified": 1680946745,
+        "narHash": "sha256-KqGlwg9UTDsFBZZB8wzXgMnc8XQm95LtSbFvBsnqkPI=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "93a2b84fc4b70d9e089d029deacc3583435c2ed6",
+        "rev": "946da791763db1c306b86a8bd3828bf5814a1247",
         "type": "github"
       },
       "original": {
@@ -5953,11 +5953,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1679032529,
-        "narHash": "sha256-pv9YT6Kq5Ui1AZnCYxzv+yKww8TlywL5sBtm/lhfb3U=",
+        "lastModified": 1679071568,
+        "narHash": "sha256-3LAo9uXGTmfS4OsiiIuoxX9knEshziCyI1MxR40VKeU=",
         "owner": "tweag",
         "repo": "jupyenv",
-        "rev": "0469859d980f38b54a808a603e9c71f863caeec0",
+        "rev": "3ad2c9512c9efd586cf63adde454e734a8ce049c",
         "type": "github"
       },
       "original": {
@@ -6247,16 +6247,17 @@
         "tullia": "tullia_3"
       },
       "locked": {
-        "lastModified": 1679505706,
-        "narHash": "sha256-RNlx+0VxJ5i3zBYDsEsc1pKho5O1Vrlrb4z93+UZUVs=",
+        "lastModified": 1680619300,
+        "narHash": "sha256-9zAcnH6XsHR+OFY9bh7vLcmQK0e/i8ugWP49ZN33pV4=",
         "owner": "input-output-hk",
         "repo": "marlowe-cardano",
-        "rev": "547043e0046800f4425d8b7c701bcd7ec44479fb",
+        "rev": "8cbf483f45e568e1c5ad7eb31432d89b363a5690",
         "type": "github"
       },
       "original": {
         "owner": "input-output-hk",
         "repo": "marlowe-cardano",
+        "rev": "8cbf483f45e568e1c5ad7eb31432d89b363a5690",
         "type": "github"
       }
     },
@@ -9829,11 +9830,11 @@
     },
     "nixpkgs_89": {
       "locked": {
-        "lastModified": 1678898370,
-        "narHash": "sha256-xTICr1j+uat5hk9FyuPOFGxpWHdJRibwZC+ATi0RbtE=",
+        "lastModified": 1680758185,
+        "narHash": "sha256-sCVWwfnk7zEX8Z+OItiH+pcSklrlsLZ4TJTtnxAYREw=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "ac718d02867a84b42522a0ece52d841188208f2c",
+        "rev": "0e19daa510e47a40e06257e205965f3b96ce0ac9",
         "type": "github"
       },
       "original": {

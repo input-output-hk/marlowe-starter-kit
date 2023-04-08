@@ -5,7 +5,7 @@ This notebook provides instructions on setting up one's environment for running 
 - Environment variables
 - Deploying Marlowe Runtime
 
-A [video of deploying Marlowe Runtime locally using docker compose](https://youtu.be/oRPTe5zbZBU) is available.
+A [video of deploying Marlowe Runtime locally using docker compose](https://youtu.be/wgSvPlWUrf8) is available.
 
 
 ## Environment Variables

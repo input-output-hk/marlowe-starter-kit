@@ -2,11 +2,11 @@
 
 - [Setup](#setup): two alternatives
     - Use [demeter.run](https://demeter.run/) extension for Marlowe Runtime
-    - [Deploy Marlowe Runtime locally with docker](docker.md) [📹](https://youtu.be/oRPTe5zbZBU).
+    - [Deploy Marlowe Runtime locally with docker](docker.md) [📹](https://youtu.be/wgSvPlWUrf8).
 - [Lessons](#lessons)
     - [0. Preliminaries](00-preliminaries.md) [📹](https://youtu.be/hGBmj9ZrYHs)
     - Zero-Coupon Bond (ZCB)
-        - [1. ZCB using the Marlowe Runtime command-line client](01-runtime-cli.ipynb) [📹](https://youtu.be/dti4QyZcCNk)
+        - [1. ZCB using the Marlowe Runtime command-line client](01-runtime-cli.ipynb) [📹](https://youtu.be/pjDtuD5rimI)
         - [2. ZCB using the Marlowe Runtime REST API](02-runtime-rest.ipynb) [📹](https://youtu.be/wgJVdkM2pBY)
         - [3. ZCB using the Marlowe command-line tool](03-marlowe-cli.ipynb) [📹](https://youtu.be/ELc72BKf7ec)
     - [4. Escrow using Marlow Runtime REST API](04-escrow-rest.ipynb) [📹](https://youtu.be/E8m-PKbS9TI)
@@ -22,7 +22,7 @@
 
 ## Setup
 
-This repository is meant to be used with [demeter.run](https://demeter.run) to execute Marlowe contracts using Marlowe Runtime, or with another similar cloud deployment of Marlowe Runtime. Alternatively, one can [deploy Marlowe Runtime locally with docker](docker.md) [📹](https://youtu.be/oRPTe5zbZBU).
+This repository is meant to be used with [demeter.run](https://demeter.run) to execute Marlowe contracts using Marlowe Runtime, or with another similar cloud deployment of Marlowe Runtime. Alternatively, one can [deploy Marlowe Runtime locally with docker](docker.md) [📹](https://youtu.be/wgSvPlWUrf8).
 
 If you are unfamiliar with the Marlowe smart-contract language or with the Cardano blockchain, you may want to familiarize yourself with the following information:
 
@@ -33,7 +33,7 @@ If you are unfamiliar with the Marlowe smart-contract language or with the Carda
 ## Lessons
 
 - [Lesson 0. Preliminaries](00-preliminaries.md): This lesson describes how to create and fund the Cardano addresses used in the lessons in this starter kit. [📹](https://youtu.be/hGBmj9ZrYHs)
-- [Lesson 1. Marlowe Runtime's Command-Line Interface](01-runtime-cli.ipynb): This lesson shows how to use Marlowe Runtime to execute a zero-coupon bond contract using the command line for a Cardano testnet. [📹](https://youtu.be/dti4QyZcCNk)
+- [Lesson 1. Marlowe Runtime's Command-Line Interface](01-runtime-cli.ipynb): This lesson shows how to use Marlowe Runtime to execute a zero-coupon bond contract using the command line for a Cardano testnet. [📹](https://youtu.be/pjDtuD5rimI)
 - [Lesson 2. Marlowe Runtime's REST Interface](02-runtime-rest.ipynb): This lesson shows how to use the REST API for Marlowe Runtime to execute a zero-coupon bond contract on a Cardano testnet. [📹](https://youtu.be/wgJVdkM2pBY)
 - [Lesson 3. Marlowe CLI](03-marlowe-cli.ipynb): This lesson shows how to use the Marlowe CLI without Marlowe Runtime to execute a zero-coupon bond contract on a Cardano testnet. [📹](https://youtu.be/ELc72BKf7ec)
 - [Lesson 4. Escrow](04-escrow-rest.ipynb): This lesson shows how to use the REST API of Marlowe Runtime to execute an escrow contract on a Cardano testnet. [📹](https://youtu.be/E8m-PKbS9TI)

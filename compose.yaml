@@ -1,0 +1,172 @@
+services:
+
+  node:
+    environment:
+      - NETWORK=${NETWORK:?err}
+    healthcheck:
+      interval: 10s
+      retries: 10
+      test: socat -u OPEN:/dev/null UNIX-CONNECT:/ipc/node.socket
+      timeout: 5s
+    image: inputoutput/cardano-node:1.35.4
+    restart: unless-stopped
+    volumes:
+    - shared:/ipc
+    - node-db:/opt/cardano/data
+
+  postgres:
+    environment:
+    - POSTGRES_LOGGING=true
+    - POSTGRES_USER=postgres
+    - POSTGRES_PASSWORD=postgres
+    - TZ=UTC
+    healthcheck:
+      interval: 10s
+      retries: 5
+      test: pg_isready -U postgres
+      timeout: 5s
+    image: postgres:11.5-alpine
+    logging:
+      driver: json-file
+      options:
+        max-file: '10'
+        max-size: 200k
+    restart: unless-stopped
+    volumes:
+    - postgres:/var/lib/postgresql/data
+    - ./${NETWORK:?err}/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  chain-indexer:
+    environment:
+    - NODE_CONFIG=/node/config.json
+    - DB_NAME=chain_${NETWORK:?err}
+    - DB_USER=postgres
+    - DB_PASS=postgres
+    - DB_HOST=postgres
+    - CARDANO_NODE_SOCKET_PATH=/ipc/node.socket
+    - HTTP_PORT=3781
+    depends_on:
+      node:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    image: ghcr.io/input-output-hk/marlowe-chain-indexer:0.0.1
+    user: 0:0
+    restart: unless-stopped
+    volumes:
+    - shared:/ipc
+    - ./${NETWORK:?err}/node:/node
+
+  chain-sync:
+    environment:
+    - NODE_CONFIG=/node/config.json
+    - HOST=0.0.0.0
+    - PORT=3715
+    - QUERY_PORT=3716
+    - JOB_PORT=3720
+    - DB_NAME=chain_${NETWORK:?err}
+    - DB_USER=postgres
+    - DB_PASS=postgres
+    - DB_HOST=postgres
+    - CARDANO_NODE_SOCKET_PATH=/ipc/node.socket
+    - HTTP_PORT=3782
+    depends_on:
+      chain-indexer:
+        condition: service_started
+      postgres:
+        condition: service_healthy
+    image: ghcr.io/input-output-hk/marlowe-chain-sync:0.0.1
+    user: 0:0
+    restart: unless-stopped
+    volumes:
+    - shared:/ipc
+    - ./${NETWORK:?err}/node:/node
+
+  indexer:
+    environment:
+    - DB_NAME=chain_${NETWORK:?err}
+    - DB_USER=postgres
+    - DB_PASS=postgres
+    - DB_HOST=postgres
+    - MARLOWE_CHAIN_SYNC_HOST=chain-sync
+    - MARLOWE_CHAIN_SYNC_PORT=3715
+    - MARLOWE_CHAIN_SYNC_QUERY_PORT=3716
+    - MARLOWE_CHAIN_SYNC_COMMAND_PORT=3720
+    - HTTP_PORT=3783
+    depends_on:
+      chain-sync:
+        condition: service_started
+      postgres:
+        condition: service_healthy
+    image: ghcr.io/input-output-hk/marlowe-indexer:0.0.1
+    restart: unless-stopped
+
+  sync:
+    environment:
+    - HOST=0.0.0.0
+    - MARLOWE_SYNC_PORT=3724
+    - MARLOWE_HEADER_SYNC_PORT=3725
+    - MARLOWE_QUERY_PORT=3726
+    - DB_NAME=chain_${NETWORK:?err}
+    - DB_USER=postgres
+    - DB_PASS=postgres
+    - DB_HOST=postgres
+    - HTTP_PORT=3784
+    depends_on:
+      indexer:
+        condition: service_started
+      postgres:
+        condition: service_healthy
+    image: ghcr.io/input-output-hk/marlowe-sync:0.0.1
+    restart: unless-stopped
+
+  tx:
+    environment:
+    - HOST=0.0.0.0
+    - PORT=3723
+    - MARLOWE_CHAIN_SYNC_HOST=chain-sync
+    - MARLOWE_CHAIN_SYNC_PORT=3715
+    - MARLOWE_CHAIN_SYNC_QUERY_PORT=3716
+    - MARLOWE_CHAIN_SYNC_COMMAND_PORT=3720
+    - HTTP_PORT=3785
+    depends_on:
+      - chain-sync
+    image: ghcr.io/input-output-hk/marlowe-tx:0.0.1
+    restart: unless-stopped
+
+  proxy:
+    environment:
+    - HOST=0.0.0.0
+    - PORT=3700
+    - TX_HOST=tx
+    - TX_PORT=3723
+    - SYNC_HOST=sync
+    - MARLOWE_SYNC_PORT=3724
+    - MARLOWE_HEADER_SYNC_PORT=3725
+    - MARLOWE_QUERY_PORT=3726
+    - HTTP_PORT=3786
+    depends_on:
+      - sync
+      - tx
+    image: ghcr.io/input-output-hk/marlowe-proxy:0.0.1
+    restart: unless-stopped
+    ports:
+    - 3700:3700
+
+  web-server:
+    environment:
+    - PORT=3780
+    - RUNTIME_HOST=proxy
+    - RUNTIME_PORT=3700
+    depends_on:
+      - proxy
+    image: ghcr.io/input-output-hk/marlowe-web-server:0.0.1
+    restart: unless-stopped
+    ports:
+    - 3780:3780
+
+volumes:
+  node-db: null
+  postgres: null
+  shared: null
+

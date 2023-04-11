@@ -1,3 +1,5 @@
+version: "2.2"
+
 services:
 
   node:
@@ -169,4 +171,3 @@ volumes:
   node-db: null
   postgres: null
   shared: null
-

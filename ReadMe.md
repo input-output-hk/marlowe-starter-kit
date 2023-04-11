@@ -82,7 +82,7 @@ Here are the steps for checking the safety of a Marlowe contract:
 
 When using Marlowe tools within [demeter.run](http://demeter.run/), nothing needs to be installed.
 
-If you are not using [demeter.run](http://demeter.run/) and have the [Nix package manager installed](https://nix.dev/tutorials/install-nix) with [Nix flakes support enabled](https://nixos.wiki/wiki/Flakes#Enable_flakes), you can launch a Jupyter notebook server, open a development environment, or build the tools.
+If you are not using [demeter.run](http://demeter.run/) and have the [Nix package manager installed](https://nix.dev/tutorials/install-nix) with [Nix flakes support enabled](https://nixos.wiki/wiki/Flakes#Enable_flakes), you can launch a Jupyter notebook server, open a development environment, or build the tools. ***Be sure to set yourself as a trusted user in the `nix.conf`; otherwise, build times will be very long.***
 
 
 #### Launching a Jupyter Server for Marlowe Tools
@@ -90,7 +90,7 @@ If you are not using [demeter.run](http://demeter.run/) and have the [Nix packag
 One can launch a Jupyter notebook server for the workbooks and tools as follows:
 
 ```console
-$ git clone git@github.com:input-output-hk/marlowe-starter-kit/
+$ git clone https://github.com/input-output-hk/marlowe-starter-kit/
 $ cd marlowe-starter-kit
 $ nix run
 ```
@@ -107,7 +107,7 @@ nix run github:input-output-hk/marlowe-starter-kit
 One can also enter a Nix development shell that contains the Marlowe tools:
 
 ```console
-$ git clone git@github.com:input-output-hk/marlowe-starter-kit/
+$ git clone https://github.com/input-output-hk/marlowe-starter-kit/
 $ cd marlowe-starter-kit
 $ nix develop
 ```

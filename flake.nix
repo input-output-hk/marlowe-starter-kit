@@ -58,7 +58,10 @@
               kernel.bash.minimal = {
                 enable = true;
                 displayName = "Bash with Marlowe Tools";
-                runtimePackages = extraPackages pkgs;
+                runtimePackages = extraPackages pkgs ++ [
+                  pkgs.docker
+                  pkgs.docker-compose
+                ];
               };
             })
           ];

@@ -5,7 +5,7 @@ This notebook provides instructions on setting up one's environment for running 
 - Environment variables
 - Deploying Marlowe Runtime
 
-A [video of deploying Marlowe Runtime locally using docker compose](https://youtu.be/wgSvPlWUrf8) is available.
+A [video of deploying Marlowe Runtime locally using docker compose](https://youtu.be/45F5ld8NNHM) is available.
 
 
 ## Environment Variables
@@ -29,11 +29,40 @@ Marlowe Runtime consists of several backend services and work together with a we
 ![The architecture of Marlowe Runtime](images/runtime-architecture.png)
 
 
+## Nix
+
+Make sure that the [Nix package manager](https://nix.dev/tutorials/install-nix) with [Nix flakes support enabled](https://nixos.wiki/wiki/Flakes#Enable_flakes) is installed. ***Be sure to set yourself as a trusted user in the `nix.conf`; otherwise, build times will be very long.***
+
+Nix provides the Marlowe tools and other tools used in the rest of these instructions:
+
+- `cardano-cli`
+- `marlowe-runtime-cli`
+- `jq`
+- `json2yaml`
+- `curl`
+
+Enter a Nix development shell that contains the Marlowe tools:
+
+```console
+$ git clone https://github.com/input-output-hk/marlowe-starter-kit/
+$ cd marlowe-starter-kit
+$ nix develop
+```
+
+This can also be done without cloning this repository:
+
+```bash
+nix develop github:input-output-hk/marlowe-starter-kit
+```
+
+These instructions were tested with Nix 2.15.0 under Debian 5.10.162.
+
+
 ## Docker
 
-First, make sure that [docker-compose](https://docs.docker.com/compose/install/) is installed on your system.
+First, make sure that [docker-compose](https://docs.docker.com/compose/install/) is installed on your system. *These instructions will not work with Docker Desktop, but they do work with Docker and Docker Engine.* Also note that some installations of docker might use the command `docker compose` instead of `docker-compose`.
 
-
+These instructions were tested with Docker version 20.10.5 and Docker Compose Version 1.25.0 under Debian 5.10.162.
 ### Network Selection
 
 Select either the public Cardano testnet pre-production (`preprod`) or preview (`preview`). The `preprod` network is easiest to start with because it contains fewer transactions than `preview`, which makes synchronize the Cardano Node and the Marlowe Runtime indexers much faster.
@@ -153,6 +182,35 @@ era: Babbage
 hash: ad9ed62386341677ada848804618b6198c1d4187a0bfbd008500d2ef9595943b
 slot: 23307149
 syncProgress: '100.00'
+```
+
+
+### Marlowe Runtime Indexers
+
+Check to see that `marlowe-chain-indexer` has reached the tip of the blockchain:
+
+```bash
+docker exec -it marlowe-starter-kit_postgres_1 psql -U postgres chain_preprod -c 'select max(slotno) from chain.block;'
+```
+
+```console
+   max    
+----------
+ 25633992
+(1 row)
+```
+
+Also check to see that `marlowe-indexer` has *approximately* reached the tip of the blockchain:
+
+```bash
+docker exec -it marlowe-starter-kit_postgres_1 psql -U postgres chain_preprod -c 'select max(slotno) from marlowe.block;'
+```
+
+```console
+   max    
+----------
+ 25627611
+(1 row)
 ```
 
 

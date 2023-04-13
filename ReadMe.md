@@ -2,7 +2,7 @@
 
 - [Setup](#setup): two alternatives
     - Use [demeter.run](https://demeter.run/) extension for Marlowe Runtime
-    - [Deploy Marlowe Runtime locally with docker](docker.md) [📹](https://youtu.be/wgSvPlWUrf8).
+    - [Deploy Marlowe Runtime locally with docker](docker.md) [📹](https://youtu.be/45F5ld8NNHM).
 - [Lessons](#lessons)
     - [0. Preliminaries](00-preliminaries.md) [📹](https://youtu.be/hGBmj9ZrYHs)
     - Zero-Coupon Bond (ZCB)
@@ -22,7 +22,7 @@
 
 ## Setup
 
-This repository is meant to be used with [demeter.run](https://demeter.run) to execute Marlowe contracts using Marlowe Runtime, or with another similar cloud deployment of Marlowe Runtime. Alternatively, one can [deploy Marlowe Runtime locally with docker](docker.md) [📹](https://youtu.be/wgSvPlWUrf8).
+This repository is meant to be used with [demeter.run](https://demeter.run) to execute Marlowe contracts using Marlowe Runtime, or with another similar cloud deployment of Marlowe Runtime. Alternatively, one can [deploy Marlowe Runtime locally with docker](docker.md) [📹](https://youtu.be/45F5ld8NNHM).
 
 If you are unfamiliar with the Marlowe smart-contract language or with the Cardano blockchain, you may want to familiarize yourself with the following information:
 

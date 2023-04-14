@@ -1,7 +1,7 @@
 # Starter Kit for Marlowe
 
 - [Setup](#setup): two alternatives
-    - Use [demeter.run](https://demeter.run/) extension for Marlowe Runtime
+    - Use [demeter.run](https://demeter.run/) extension for Marlowe Runtime [📹](https://youtu.be/QeBGv2mvGnA)
     - [Deploy Marlowe Runtime locally with docker](docker.md) [📹](https://youtu.be/45F5ld8NNHM).
 - [Lessons](#lessons)
     - [0. Preliminaries](00-preliminaries.md) [📹](https://youtu.be/hGBmj9ZrYHs)

@@ -213,7 +213,7 @@ docker exec -it marlowe-starter-kit_postgres_1 psql -U postgres chain_preprod -c
 (1 row)
 ```
 
-Note: If the `marlowe-indexer` query result is not greater than or equal to `25627611`, you may need to reset the docker postgres volume:
+*Troubleshooting note:* If the `marlowe-chain-indexer` or `marlowe-indexer` query result is `null` or an extremely low number such as `-1`, you may need to reset the docker postgres volume:
 
 ```bash
 docker compose stop postgres
@@ -221,6 +221,7 @@ docker compose remove postgres
 docker volume rm marlowe-starter-kit_postgres
 docker compose up -d
 ```
+
 
 ### Marlowe Runtime Proxy Service
 

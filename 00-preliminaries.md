@@ -6,7 +6,7 @@ The [demeter.run](https://demeter.run/) web3 development platform provides an ex
 ## Using the Cardano Marlowe Runtime extension
 
 - If you are using this starter kit with the *Cardano Marlowe Runtime* extension for [demeter.run](https://demeter.run/), please see these resources to help you set up wallets: 
-    1. [Using demeter.run's Marlowe Runtime extension (video) (2:42)](https://youtu.be/QeBGv2mvGnA) to access Marlowe Runtime.
+    1. [Using demeter.run's Marlowe Runtime extension (video) (2:32)](https://youtu.be/XnZ8gCjpl1E) to access Marlowe Runtime.
     2. The jupyter notebook [00-preliminaries.ipynb](00-preliminaries.ipynb) and/or [demonstration of setting up keys and addresses (video) (6:17)](https://youtu.be/hGBmj9ZrYHs) to set up wallets.
 
 

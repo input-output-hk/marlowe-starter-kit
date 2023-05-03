@@ -12,8 +12,8 @@
             - [ZCB using the Marlowe Runtime REST API (video) (23:46)](https://youtu.be/wgJVdkM2pBY)
         - [3. ZCB using the Marlowe command-line tool](03-marlowe-cli.ipynb)
             - [ZCB using the Marlowe command-line tool (video) (13:43)](https://youtu.be/ELc72BKf7ec)
-    - [4. Escrow using Marlow Runtime REST API](04-escrow-rest.ipynb)
-        - [Escrow using Marlow Runtime REST API (video) (24:45)](https://youtu.be/E8m-PKbS9TI)
+    - [4. Escrow using Marlowe Runtime REST API](04-escrow-rest.ipynb)
+        - [Escrow using Marlowe Runtime REST API (video) (24:45)](https://youtu.be/E8m-PKbS9TI)
     - [5. Swap of Ada for Djed using Marlowe Runtime Rest API](05-swap-rest.ipynb)
         - [Swap of Ada for Djed using Marlowe Runtime Rest API (video) (16:23)](https://youtu.be/sSrVCRNoytU)
 - [Additional Information](#additional-information)
@@ -50,7 +50,7 @@ If you are unfamiliar with the Marlowe smart-contract language or with the Carda
 - [Lesson 3. Marlowe CLI](03-marlowe-cli.ipynb): This lesson shows how to use the Marlowe CLI without Marlowe Runtime to execute a zero-coupon bond contract on a Cardano testnet.
     - [ZCB using the Marlowe command-line tool (video) (13:43)](https://youtu.be/ELc72BKf7ec)
 - [Lesson 4. Escrow](04-escrow-rest.ipynb): This lesson shows how to use the REST API of Marlowe Runtime to execute an escrow contract on a Cardano testnet.
-    - [Escrow using Marlow Runtime REST API (video) (24:45)](https://youtu.be/E8m-PKbS9TI)
+    - [Escrow using Marlowe Runtime REST API (video) (24:45)](https://youtu.be/E8m-PKbS9TI)
 - [Lesson 5. Swap](05-swap-rest.ipynb): This lesson shows how to use the REST API of Marlowe Runtime to execute a swap contract for ada and djed on a Cardano testnet.
     - [Swap of Ada for Djed using Marlowe Runtime Rest API (video) (16:23)](https://youtu.be/sSrVCRNoytU)
 

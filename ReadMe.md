@@ -1,5 +1,10 @@
 # Starter Kit for Marlowe
 
+This repository contains lessons for using Marlowe via REST and at the command line. It is meant to be used with [demeter.run](https://demeter.run) or with a Docker deployment of Marlowe Runtime.
+
+
+## Contents
+
 - [Setup](#setup): two alternatives
     - Use [demeter.run](https://demeter.run/) extension for Marlowe Runtime: [using demeter.run's Marlowe Runtime extension (video) (2:32)](https://youtu.be/XnZ8gCjpl1E)
     - [Deploy Marlowe Runtime locally with docker](docker.md) and [launching Marlowe Runtime using Docker (video) (9:48)](https://youtu.be/45F5ld8NNHM).

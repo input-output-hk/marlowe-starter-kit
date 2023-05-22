@@ -38,6 +38,7 @@ const ada = 1000000
 
 /**
  * Set the wallet's address in the UI.
+ * @param [String] a The hexadecimal bytes for the address.
  */
 function setAddress(a) {
   const bytes = []
@@ -51,6 +52,7 @@ function setAddress(a) {
 
 /**
  * Set the contract ID in the UI.
+ * @param [String] c The contract ID.
  */
 function setContract(c) {
   contractId = c
@@ -60,6 +62,8 @@ function setContract(c) {
 
 /**
  * Set a link to a transaction in the UI.
+ * @param [Element] element The UI element for the transaction.
+ * @param [String]  tx      The transaction ID.
  */
 function setTx(element, tx) {
   const display = tx.substr(0, 18) + "..." + tx.substr(tx.length - 18)
@@ -121,6 +125,7 @@ function report(message) {
 
 /**
  * Show a status message in the UI.
+ * @param [String] message The message.
  */
 function status(message) {
   uiMessage.innerText = message
@@ -288,6 +293,8 @@ function submitTransaction(cborHex, url, wait) {
     console.log({operation : "submit", request : req})
     status("Submitting transaction.")
     xhttp.send(JSON.stringify(req))
+  }).catch(function(error) {
+    report(error)
   })
 }
 
@@ -339,21 +346,26 @@ export async function initialize() {
 
   uiAmount.value = 10 * ada
 
-  let depositTime = new Date()
+  const depositTime = new Date()
   depositTime.setMinutes(depositTime.getMinutes() + 10)
   uiDepositTime.value = depositTime.toISOString()
 
-  let releaseTime = new Date()
+  const releaseTime = new Date()
   releaseTime.setMinutes(releaseTime.getMinutes() + 15)
   uiReleaseTime.value = releaseTime.toISOString()
 
+  // Connect to the Nami wallet.
   cardano.nami.enable().then(function(n) {
     nami = n
     nami.getChangeAddress().then(function(a) {
       setAddress(a)
       uiReceiver.value = address
       makeContract()
+    }).catch(function(error) {
+      report(error)
     })
+  }).catch(function(error) {
+    report(error)
   })
 
 }

@@ -1,8 +1,11 @@
 # Example of Using Marlowe Runtime with a CIP30 Wallet
 
-This example shows how to use a Babbage-enabled CIP30 wallet such as [Nami](https://namiwallet.io/) to sign Marlowe transactions. The example contract here simply receives a deposit and waits until a specified time before the funds become payable to an address.
+This example shows how to use a Babbage-compatible CIP30 wallet such as [Nami](https://namiwallet.io/) to sign Marlowe transactions. The example contract here simply receives a deposit and waits until a specified time before the funds become payable to an address.
 
 [This video](https://youtu.be/EsILiHiNZWk) shows the application in action.
+
+
+![Screenshot of example application](screenshot.png)
 
 
 ## Source files

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="view.css" type="text/css" rel="stylesheet"/>
+    <script src="controller.js" type="application/javascript"> </script>
+    <script type="text/javascript" src="node_modules/renderjson/renderjson.js"></script>
+    <title>Example of Using Marlowe Runtime with Nami Wallet</title>
+  </head>
+  <body id="uiBody" onload="Controller.initialize(false)">
+    <h1>Example of Using Marlowe Runtime with a CIP30 Wallet</h1>
+    <p>This example shows how to use a Babbage-enabled CIP30 wallet such as <a href="https://namiwallet.io/" target="marlowe">Nami</a> to sign Marlowe transactions. The example contract here simply receives a deposit and waits until a specified time before the funds become payable to an address.</p>
+    <div id="uiPanels">
+      <div id="uiPanelLeft">
+        <table>
+          <thead><tr><th colspan="2">Marlowe Runtime</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><label for="uiRuntime">URL</label></td>
+              <td><input id="uiRuntime" type="text"/></td>
+            </tr>
+          </tbody>
+          <thead><tr><th colspan="2">Parameters for contract</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Depositor's address:</td>
+              <td><span id="uiAddress"/></td>
+            </tr>
+            <tr>
+              <td><label for="uiReceiver">Receiver address:</label></td>
+              <td><input id="uiReceiver" type="text" onchange="Controller.makeContract()"/></td>
+            </tr>
+            <tr>
+              <td><label for="uiAmount">Deposit amount:</label></td>
+              <td><input id="uiAmount" type="text" onchange="Controller.makeContract()"/></td>
+            </tr>
+            <tr>
+              <td><label for="uiDepositTime">Deposit deadline:</label></td>
+              <td><input id="uiDepositTime" type="text" onchange="Controller.makeContract()"/></td>
+            </tr>
+            <tr>
+              <td><label for="uiReleaseTime">Release time:</label></td>
+              <td><input id="uiReleaseTime" type="text" onchange="Controller.makeContract()"/></td>
+            </tr>
+          </tbody>
+          <thead><tr><th colspan="2">Transactions</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><button id="uiCreate" type="button" onclick="Controller.createContract()">1. Create contract</button></td>
+              <td><span id="uiCreateTx"/></td>
+            </tr>
+            <tr>
+              <td><button id="uiDeposit" type="button" onclick="Controller.depositFunds()">2. Deposit funds</button></td>
+              <td><span id="uiDepositTx"/></td>
+            </tr>
+            <tr>
+              <td colspan="2"><em>Release the funds after the next block is produced after the “release time”.</em></td>
+            </tr>
+            <tr>
+              <td><button id="uiRelease" type="button" onclick="Controller.releaseFunds()">3. Release funds</button></td>
+              <td><span id="uiReleaseTx"/></td>
+            </tr>
+          </tbody>
+          <thead><tr><th colspan="2">Last message</th></tr></thead>
+          <tbody>
+            <tr>
+              <td id="uiMessage" colspan="2"/>
+            </tr>
+          </tbody>
+          <thead><tr><th colspan="2">Example</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><button id="uiRestart" type="button" onclick="Controller.restart()">Restart example</button></td>
+              <td/>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="uiPanelRight">
+        <table>
+          <thead><tr><th colspan="2">Contract</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Template:</td>
+              <td><img alt="Blockly diagram of the Marlowe contract" src="contract.png"/></td>
+            </tr>
+            <tr>
+              <td>Contract ID:</td>
+              <td><span id="uiContractId"/></td>
+            </tr>
+            <tr>
+              <td>Contract JSON:</td>
+              <td id="uiContract"/>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

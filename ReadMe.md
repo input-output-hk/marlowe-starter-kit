@@ -7,6 +7,9 @@ This repository contains lessons for using Marlowe via REST and at the command l
 
 - [Setup](#setup): two alternatives
     - Use [demeter.run](https://demeter.run/) extension for Marlowe Runtime: [using demeter.run's Marlowe Runtime extension (video) (2:32)](https://youtu.be/XnZ8gCjpl1E)
+      -  Select the "Marlowe Tutorial" starter kit.
+      -  Be sure to turn on the "Cardano Nodes" and "Cardano Marlowe Runtime" extensions.
+      -  Check that those match the network you are using for the starter kit.
     - [Deploy Marlowe Runtime locally with docker](docker.md) and [launching Marlowe Runtime using Docker (video) (9:48)](https://youtu.be/45F5ld8NNHM).
 - [Lessons](#lessons)
     - [0. Preliminaries](00-preliminaries.md) and [demonstration of setting up keys and addresses (video) (6:17)](https://youtu.be/hGBmj9ZrYHs)
@@ -37,6 +40,9 @@ You can ask questions about Marlowe in [the #ask-marlowe channel on the IOG Disc
 
 This repository is meant to be used with [demeter.run](https://demeter.run) to execute Marlowe contracts using Marlowe Runtime, or with another similar cloud deployment of Marlowe Runtime.
 - [Using demeter.run's Marlowe Runtime extension (video) (2:42)](https://youtu.be/QeBGv2mvGnA) to access Marlowe Runtime.
+-  Select the "Marlowe Tutorial" starter kit.
+-  Be sure to turn on the "Cardano Nodes" and "Cardano Marlowe Runtime" extensions.
+-  Check that those match the network you are using for the starter kit.
 
 Alternatively, one can [deploy Marlowe Runtime locally with docker](docker.md).
 - [Launching Marlowe Runtime using Docker (video) (9:48)](https://youtu.be/45F5ld8NNHM) to set up Marlowe Runtime.

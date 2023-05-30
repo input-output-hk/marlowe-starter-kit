@@ -49,7 +49,7 @@ Alternatively, one can [deploy Marlowe Runtime locally with docker](docker.md).
 
 If you are unfamiliar with the Marlowe smart-contract language or with the Cardano blockchain, you may want to familiarize yourself with the following information:
 
-1. [The Marlowe Language](https://marlowe-finance.io/)
+1. [The Marlowe Language](https://marlowe.iohk.io/)
 2. [Cardano's Extended UTxO Model](https://docs.cardano.org/learn/eutxo-explainer).
 
 
@@ -98,7 +98,7 @@ If one plans to run a Marlowe contract on the Cardano `mainnet`, then one should
 
 Here are the steps for checking the safety of a Marlowe contract:
 
-1. Understand the [Marlowe Language](https://marlowe-finance.io/).
+1. Understand the [Marlowe Language](https://marlowe.iohk.io/).
 2. Understand Cardano\'s [Extended UTxO Model](https://docs.cardano.org/learn/eutxo-explainer).
 3. Read and understand the [Marlowe Best Practices Guide](https://github.com/input-output-hk/marlowe-cardano/blob/main/marlowe/best-practices.md).
 4. Read and understand the [Marlowe Security Guide](https://github.com/input-output-hk/marlowe-cardano/blob/main/marlowe/security.md).

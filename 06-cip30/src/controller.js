@@ -311,7 +311,7 @@ function waitForConfirmation(url, followup) {
         if (this.status == 200) {
           const res = JSON.parse(this.responseText)
           if (res.resource.status == "confirmed") {
-            followup()
+            setTimeout(followup, delay)
             report("Transaction confirmed.")
   	} else if (res.resource.status == "submitted") {
             setTimeout(waitForConfirmation(url, followup), delay)

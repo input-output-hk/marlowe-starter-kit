@@ -3,5 +3,7 @@
 
 set -ve
 
+npm install
+
 export DEBUG='express:*'
 npx webpack-dev-server

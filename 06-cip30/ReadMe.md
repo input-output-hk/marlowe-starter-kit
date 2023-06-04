@@ -37,7 +37,7 @@ All the above endpoints also accept witnessset as a payload for PUT request.
 ## Running the application
 
 - If you have Nix installed, simply execute [./run.sh](run.sh).
-- Alternatively, if you have NodeJS installed, execute `npx webpack-dev-server`.
+- Alternatively, if you have NodeJS installed, execute `npm install` and then `npx webpack-dev-server`.
 
 The application is served from [http://127.0.0.1:3000](http://127.0.0.1:3000). It requires the following:
 

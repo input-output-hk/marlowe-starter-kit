@@ -1,30 +1,30 @@
-testName: WolframBet
+stTestName: WolframBet
 
-operations:
+stScriptOperations:
 
 - Comment: Create wallet for Alice
 
 - CreateWallet:
-    nickname: AliceWallet
+    tag: AliceWallet
     utxo: 1000000
 
 - Comment: Create wallet for Bob
 
 - CreateWallet:
-    nickname: BobWallet
+    tag: BobWallet
     utxo: 1000000
 
 - Comment: Create the wallet for the distributor
 
 - CreateWallet:
-    nickname: Distributor
+    tag: Distributor
     utxo: 1000000
 
 - Comment: The mediator mints role tokens and distributes them across wallets.
 
 - Mint:
     issuer: Referee
-    nickname: RoleTokenCurrency
+    tag: RoleTokenCurrency
     minLovelace: 2000000
     tokenDistribution:
       - [AliceWallet, Alice, 1]

@@ -1,0 +1,109 @@
+{
+    "when": [
+        {
+            "then": {
+                "when": [
+                    {
+                        "then": {
+                            "when": [
+                                {
+                                    "then": {
+                                        "then": {
+                                            "token": {
+                                                "token_name": "",
+                                                "currency_symbol": ""
+                                            },
+                                            "to": {
+                                                "party": {
+                                                    "address": "addr_test1vrudhk63pclytll6vdt6hrda75al5a2jhtlkuqn0mh89ngsr929vf"
+                                                }
+                                            },
+                                            "then": "close",
+                                            "pay": 100000000,
+                                            "from_account": {
+                                                "address": "addr_test1vrc79wasc0na5zglchugujuevu9ra9ehfjxwl4x9stgm9uc9dpguq"
+                                            }
+                                        },
+                                        "if": {
+                                            "value": {
+                                                "value_of_choice": {
+                                                    "choice_owner": {
+                                                        "address": "addr_test1vrxx3rjangevudlrejgp9m508uc26jd02n7lmdz365n4wrca35y5j"
+                                                    },
+                                                    "choice_name": "WOLF_BTCUSD"
+                                                }
+                                            },
+                                            "lt": 1000000
+                                        },
+                                        "else": {
+                                            "token": {
+                                                "token_name": "",
+                                                "currency_symbol": ""
+                                            },
+                                            "to": {
+                                                "party": {
+                                                    "address": "addr_test1vrc79wasc0na5zglchugujuevu9ra9ehfjxwl4x9stgm9uc9dpguq"
+                                                }
+                                            },
+                                            "then": "close",
+                                            "pay": 100000000,
+                                            "from_account": {
+                                                "address": "addr_test1vrudhk63pclytll6vdt6hrda75al5a2jhtlkuqn0mh89ngsr929vf"
+                                            }
+                                        }
+                                    },
+                                    "case": {
+                                        "for_choice": {
+                                            "choice_owner": {
+                                                "address": "addr_test1vrxx3rjangevudlrejgp9m508uc26jd02n7lmdz365n4wrca35y5j"
+                                            },
+                                            "choice_name": "WOLF_BTCUSD"
+                                        },
+                                        "choose_between": [
+                                            {
+                                                "to": 100000000,
+                                                "from": 0
+                                            }
+                                        ]
+                                    }
+                                }
+                            ],
+                            "timeout_continuation": "close",
+                            "timeout": 431686350279989
+                        },
+                        "case": {
+                            "party": {
+                                "address": "addr_test1vrudhk63pclytll6vdt6hrda75al5a2jhtlkuqn0mh89ngsr929vf"
+                            },
+                            "of_token": {
+                                "token_name": "",
+                                "currency_symbol": ""
+                            },
+                            "into_account": {
+                                "address": "addr_test1vrudhk63pclytll6vdt6hrda75al5a2jhtlkuqn0mh89ngsr929vf"
+                            },
+                            "deposits": 100000000
+                        }
+                    }
+                ],
+                "timeout_continuation": "close",
+                "timeout": 216863500634957
+            },
+            "case": {
+                "party": {
+                    "address": "addr_test1vrc79wasc0na5zglchugujuevu9ra9ehfjxwl4x9stgm9uc9dpguq"
+                },
+                "of_token": {
+                    "token_name": "",
+                    "currency_symbol": ""
+                },
+                "into_account": {
+                    "address": "addr_test1vrc79wasc0na5zglchugujuevu9ra9ehfjxwl4x9stgm9uc9dpguq"
+                },
+                "deposits": 100000000
+            }
+        }
+    ],
+    "timeout_continuation": "close",
+    "timeout": 21686350063495
+}

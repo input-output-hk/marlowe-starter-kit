@@ -4,9 +4,3 @@ tmp/
 *.sw?
 .ipynb_checkpoints/
 .jupyter/
-*.skey
-*.vkey
-*.address
-*.unsigned
-*.signed
-*.json

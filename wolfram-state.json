@@ -1,0 +1,31 @@
+{
+    "accounts": [
+        [
+            [
+                {
+                    "address": "addr_test1vrudhk63pclytll6vdt6hrda75al5a2jhtlkuqn0mh89ngsr929vf"
+                },
+                {
+                    "currency_symbol": "",
+                    "token_name": ""
+                }
+            ],
+            300000000
+        ],
+        [
+            [
+                {
+                    "address": "addr_test1vrc79wasc0na5zglchugujuevu9ra9ehfjxwl4x9stgm9uc9dpguq"
+                },
+                {
+                    "currency_symbol": "",
+                    "token_name": ""
+                }
+            ],
+            300000000
+        ]
+    ],
+    "boundValues": [],
+    "choices": [],
+    "minTime": 1
+}

@@ -1,6 +1,10 @@
-# Starter Kit for Marlowe
+# Starter Kit for Marlowe + Wolfram Oracles
 
-This repository contains lessons for using Marlowe via REST and at the command line. It is meant to be used with [demeter.run](https://demeter.run) or with a Docker deployment of Marlowe Runtime.
+This repository contains lessons for testing Marlowe Oracles support through submitting `IChoice`. It is a fork of:
+https://github.com/input-output-hk/marlowe-starter-kit/
+
+Here's a reference PR for Marlowe-Wolfram Oracle integration:
+https://github.com/input-output-hk/marlowe-cardano/pull/608
 
 
 ## Contents
@@ -13,17 +17,8 @@ This repository contains lessons for using Marlowe via REST and at the command l
     - [Deploy Marlowe Runtime locally with docker](docker.md) and [launching Marlowe Runtime using Docker (video) (9:48)](https://youtu.be/45F5ld8NNHM).
 - [Lessons](#lessons)
     - [0. Preliminaries](00-preliminaries.md) and [demonstration of setting up keys and addresses (video) (6:17)](https://youtu.be/hGBmj9ZrYHs)
-    - Zero-Coupon Bond (ZCB)
-        - [1. ZCB using the Marlowe Runtime command-line client](01-runtime-cli.ipynb)
-            - [ZCB using the Marlowe Runtime command-line client (video) (24:42)](https://youtu.be/pjDtuD5rimI)
-        - [2. ZCB using the Marlowe Runtime REST API](02-runtime-rest.ipynb)
-            - [ZCB using the Marlowe Runtime REST API (video) (23:46)](https://youtu.be/wgJVdkM2pBY)
-        - [3. ZCB using the Marlowe command-line tool](03-marlowe-cli.ipynb)
-            - [ZCB using the Marlowe command-line tool (video) (13:43)](https://youtu.be/ELc72BKf7ec)
-    - [4. Escrow using Marlowe Runtime REST API](04-escrow-rest.ipynb)
-        - [Escrow using Marlowe Runtime REST API (video) (24:45)](https://youtu.be/E8m-PKbS9TI)
-    - [5. Swap of Ada for Djed using Marlowe Runtime Rest API](05-swap-rest.ipynb)
-        - [Swap of Ada for Djed using Marlowe Runtime Rest API (video) (16:23)](https://youtu.be/sSrVCRNoytU)
+    - [1. Simple Wolfram Oracle](11-wolfram.ipynb)
+        
 - [Additional Information](#additional-information)
     - [Overview of Marlowe Tools](#marlowe-tools)
     - [Overview of Marlowe Runtime](#marlowe-runtime)
@@ -51,23 +46,6 @@ If you are unfamiliar with the Marlowe smart-contract language or with the Carda
 
 1. [The Marlowe Language](https://marlowe.iohk.io/)
 2. [Cardano's Extended UTxO Model](https://docs.cardano.org/learn/eutxo-explainer).
-
-
-## Lessons
-
-- [Lesson 0. Preliminaries](00-preliminaries.md): This lesson describes how to create and fund the Cardano addresses used in the lessons in this starter kit.
-    - [Demonstration of setting up keys and addresses (video) (6:17)](https://youtu.be/hGBmj9ZrYHs)
-- [Lesson 1. Marlowe Runtime's Command-Line Interface](01-runtime-cli.ipynb): This lesson shows how to use Marlowe Runtime to execute a zero-coupon bond contract using the command line for a Cardano testnet.
-    - [ZCB using the Marlowe Runtime command-line client (video) (24:42)](https://youtu.be/pjDtuD5rimI)
-- [Lesson 2. Marlowe Runtime's REST Interface](02-runtime-rest.ipynb): This lesson shows how to use the REST API for Marlowe Runtime to execute a zero-coupon bond contract on a Cardano testnet.
-    - [ZCB using the Marlowe Runtime REST API (video) (23:46)](https://youtu.be/wgJVdkM2pBY)
-- [Lesson 3. Marlowe CLI](03-marlowe-cli.ipynb): This lesson shows how to use the Marlowe CLI without Marlowe Runtime to execute a zero-coupon bond contract on a Cardano testnet.
-    - [ZCB using the Marlowe command-line tool (video) (13:43)](https://youtu.be/ELc72BKf7ec)
-- [Lesson 4. Escrow](04-escrow-rest.ipynb): This lesson shows how to use the REST API of Marlowe Runtime to execute an escrow contract on a Cardano testnet.
-    - [Escrow using Marlowe Runtime REST API (video) (24:45)](https://youtu.be/E8m-PKbS9TI)
-- [Lesson 5. Swap](05-swap-rest.ipynb): This lesson shows how to use the REST API of Marlowe Runtime to execute a swap contract for ada and djed on a Cardano testnet.
-    - [Swap of Ada for Djed using Marlowe Runtime Rest API (video) (16:23)](https://youtu.be/sSrVCRNoytU)
-
 
 ## Additional Information
 
@@ -113,47 +91,5 @@ When using Marlowe tools within [demeter.run](http://demeter.run/), nothing need
 
 If you are not using [demeter.run](http://demeter.run/) and have the [Nix package manager installed](https://nix.dev/tutorials/install-nix) with [Nix flakes support enabled](https://nixos.wiki/wiki/Flakes#Enable_flakes), you can launch a Jupyter notebook server, open a development environment, or build the tools. ***Be sure to set yourself as a trusted user in the `nix.conf`; otherwise, build times will be very long.***
 
-
-#### Launching a Jupyter Server for Marlowe Tools
-
-One can launch a Jupyter notebook server for the workbooks and tools as follows:
-
-```console
-$ git clone https://github.com/input-output-hk/marlowe-starter-kit/
-$ cd marlowe-starter-kit
-$ nix run
 ```
 
-One can even run a Jupyter notebook server with Marlowe tools already installed (but no example notebooks) without manually cloning this repository:
-
-```bash
-nix run github:input-output-hk/marlowe-starter-kit
-```
-
-
-#### Opening a Development Shell
-
-One can also enter a Nix development shell that contains the Marlowe tools:
-
-```console
-$ git clone https://github.com/input-output-hk/marlowe-starter-kit/
-$ cd marlowe-starter-kit
-$ nix develop
-```
-
-This can also be done without cloning this repository:
-
-```bash
-nix develop github:input-output-hk/marlowe-starter-kit
-```
-
-
-#### Building individual Tools
-
-One can build individual Marlowe tools using Nix:
-
-```bash
-nix build github:input-output-hk/marlowe-starter-kit/#marlowe-runtime-cli -o build/marlowe-runtime-cli
-nix build github:input-output-hk/marlowe-starter-kit/#marlowe-cli         -o build/marlowe-cli
-nix build github:input-output-hk/marlowe-starter-kit/#marlowe-pipe        -o build/marlowe-pipe
-```

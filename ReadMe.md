@@ -1,7 +1,6 @@
 # Starter Kit for Marlowe + Wolfram Oracles
 
-This repository contains lessons for testing Marlowe Oracles support through submitting `IChoice`. It is a fork of:
-https://github.com/input-output-hk/marlowe-starter-kit/
+This repository contains lessons for testing Marlowe Oracles support through submitting `IChoice`.
 
 Here's a reference PR for Marlowe-Wolfram Oracle integration:
 https://github.com/input-output-hk/marlowe-cardano/pull/608

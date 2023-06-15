@@ -37,6 +37,23 @@ services:
     volumes:
     - postgres:/var/lib/postgresql/data
     - ./${NETWORK:?err}/init.sql:/docker-entrypoint-initdb.d/init.sql
+    command:
+      - '-c'
+      - 'max_connections=1000'
+      - '-c'
+      - 'superuser_reserved_connections=5'
+      - '-c'
+      - 'huge_pages=try'
+      - '-c'
+      - 'max_wal_size=6GB'
+      - '-c'
+      - 'max_locks_per_transaction=256'
+      - '-c'
+      - 'max_pred_locks_per_transaction=256'
+      - '-c'
+      - 'work_mem=32MB'
+      - '-c'
+      - 'maintenance_work_mem=256MB'
 
   chain-indexer:
     environment:
@@ -52,7 +69,7 @@ services:
         condition: service_healthy
       postgres:
         condition: service_healthy
-    image: ghcr.io/input-output-hk/marlowe-chain-indexer:0.0.1
+    image: ghcr.io/input-output-hk/marlowe-chain-indexer:0.0.2-rc1
     user: 0:0
     restart: unless-stopped
     volumes:
@@ -77,7 +94,7 @@ services:
         condition: service_started
       postgres:
         condition: service_healthy
-    image: ghcr.io/input-output-hk/marlowe-chain-sync:0.0.1
+    image: ghcr.io/input-output-hk/marlowe-chain-sync:0.0.2-rc1
     user: 0:0
     restart: unless-stopped
     volumes:
@@ -100,7 +117,7 @@ services:
         condition: service_started
       postgres:
         condition: service_healthy
-    image: ghcr.io/input-output-hk/marlowe-indexer:0.0.1
+    image: ghcr.io/input-output-hk/marlowe-indexer:0.0.2-rc1
     restart: unless-stopped
 
   sync:
@@ -119,7 +136,7 @@ services:
         condition: service_started
       postgres:
         condition: service_healthy
-    image: ghcr.io/input-output-hk/marlowe-sync:0.0.1
+    image: ghcr.io/input-output-hk/marlowe-sync:0.0.2-rc1
     restart: unless-stopped
 
   tx:
@@ -130,18 +147,39 @@ services:
     - MARLOWE_CHAIN_SYNC_PORT=3715
     - MARLOWE_CHAIN_SYNC_QUERY_PORT=3716
     - MARLOWE_CHAIN_SYNC_COMMAND_PORT=3720
+    - CONTRACT_HOST=contract
+    - CONTRACT_QUERY_PORT=3728
     - HTTP_PORT=3785
     depends_on:
       - chain-sync
-    image: ghcr.io/input-output-hk/marlowe-tx:0.0.1
+      - contract
+    image: ghcr.io/input-output-hk/marlowe-tx:0.0.2-rc1
+    restart: unless-stopped
+
+  contract:
+    environment:
+    - HOST=0.0.0.0
+    - PORT=3727
+    - QUERY_PORT=3728
+    - STORE_DIR=/store
+    - HTTP_PORT=3787
+    depends_on:
+      - chain-sync
+    volumes:
+      - marlowe-contract-store:/store
+    image: ghcr.io/input-output-hk/marlowe-contract:0.0.2-rc1
     restart: unless-stopped
 
   proxy:
     environment:
     - HOST=0.0.0.0
     - PORT=3700
+    - TRACED_PORT=3701
     - TX_HOST=tx
     - TX_PORT=3723
+    - CONTRACT_HOST=contract
+    - LOAD_PORT=3727
+    - CONTRACT_QUERY_PORT=3728
     - SYNC_HOST=sync
     - MARLOWE_SYNC_PORT=3724
     - MARLOWE_HEADER_SYNC_PORT=3725
@@ -150,19 +188,21 @@ services:
     depends_on:
       - sync
       - tx
-    image: ghcr.io/input-output-hk/marlowe-proxy:0.0.1
+      - contract
+    image: ghcr.io/input-output-hk/marlowe-proxy:0.0.2-rc1
     restart: unless-stopped
     ports:
     - 3700:3700
+    - 3701:3701
 
   web-server:
     environment:
     - PORT=3780
     - RUNTIME_HOST=proxy
-    - RUNTIME_PORT=3700
+    - RUNTIME_PORT=3701
     depends_on:
       - proxy
-    image: ghcr.io/input-output-hk/marlowe-web-server:0.0.1
+    image: ghcr.io/input-output-hk/marlowe-web-server:0.0.2-rc1
     restart: unless-stopped
     ports:
     - 3780:3780
@@ -171,3 +211,4 @@ volumes:
   node-db: null
   postgres: null
   shared: null
+  marlowe-contract-store: null

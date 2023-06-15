@@ -21,26 +21,33 @@
       flake = false;
     };
     flake-utils.url = "github:numtide/flake-utils";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.follows = "marlowe/iogx/nixpkgs";
     jupyenv.url = "github:tweag/jupyenv";
-    marlowe.url = "github:input-output-hk/marlowe-cardano/8cbf483f45e568e1c5ad7eb31432d89b363a5690";  # tag=runtime@v0.0.1
+    marlowe = {
+      type = "github";
+      owner = "input-output-hk";
+      repo = "marlowe-cardano";
+      ref = "runtime@v0.0.2";
+    };
+    cardano-world.follows = "marlowe/cardano-world";
   };
 
-  outputs = { self, flake-compat, flake-utils, nixpkgs, jupyenv, marlowe }:
+  outputs = { self, flake-compat, flake-utils, nixpkgs, jupyenv, marlowe, cardano-world }:
     flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
         mp = marlowe.packages.${system};
+        cp = cardano-world.${system}.cardano.packages;
         extraPackages = p: [
-          mp.marlowe-runtime-cli
-          mp.marlowe-cli
-          mp.marlowe.haskell.packages.marlowe-apps.components.exes.marlowe-finder
-          mp.marlowe.haskell.packages.marlowe-apps.components.exes.marlowe-oracle
-          mp.marlowe.haskell.packages.marlowe-apps.components.exes.marlowe-pipe
-          mp.marlowe.haskell.packages.marlowe-apps.components.exes.marlowe-scaling
-          mp.pkgs.cardano.packages.cardano-address
-          mp.pkgs.cardano.packages.cardano-cli
-          mp.pkgs.cardano.packages.cardano-wallet
+          mp.ghc8107-marlowe-runtime-cli-exe-marlowe-runtime-cli
+          mp.ghc8107-marlowe-cli-exe-marlowe-cli
+          mp.ghc8107-marlowe-apps-exe-marlowe-finder
+          mp.ghc8107-marlowe-apps-exe-marlowe-oracle
+          mp.ghc8107-marlowe-apps-exe-marlowe-pipe
+          mp.ghc8107-marlowe-apps-exe-marlowe-scaling
+          cp.cardano-address
+          cp.cardano-cli
+          cp.cardano-wallet
           p.gcc
           p.z3
           p.coreutils

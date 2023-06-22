@@ -24,6 +24,8 @@ This repository contains lessons for using Marlowe via REST and at the command l
         - [Escrow using Marlowe Runtime REST API (video) (24:45)](https://youtu.be/E8m-PKbS9TI)
     - [5. Swap of Ada for Djed using Marlowe Runtime Rest API](05-swap-rest.ipynb)
         - [Swap of Ada for Djed using Marlowe Runtime Rest API (video) (16:23)](https://youtu.be/sSrVCRNoytU)
+    - [6. Simple web application using a CIP-30 wallet](06-cip30/ReadMe.md)
+        - [Simple web application using a CIP-30 wallet (video) (3:13)](https://youtu.be/EsILiHiNZWk)
 - [Additional Information](#additional-information)
     - [Overview of Marlowe Tools](#marlowe-tools)
     - [Overview of Marlowe Runtime](#marlowe-runtime)
@@ -67,6 +69,8 @@ If you are unfamiliar with the Marlowe smart-contract language or with the Carda
     - [Escrow using Marlowe Runtime REST API (video) (24:45)](https://youtu.be/E8m-PKbS9TI)
 - [Lesson 5. Swap](05-swap-rest.ipynb): This lesson shows how to use the REST API of Marlowe Runtime to execute a swap contract for ada and djed on a Cardano testnet.
     - [Swap of Ada for Djed using Marlowe Runtime Rest API (video) (16:23)](https://youtu.be/sSrVCRNoytU)
+- [Lesson 6. Simple web application using a CIP-30 wallet](06-cip30/ReadMe.md)
+    - [Simple web application using a CIP-30 wallet (video) (3:13)](https://youtu.be/EsILiHiNZWk)
 
 
 ## Additional Information

@@ -56,7 +56,7 @@ function setAddress(a) {
  */
 function setContract(c) {
   contractId = c
-  uiContractId.innerHTML = "<a href='http://marlowe.palas87.es:8001/contractView?tab=info&contractId=" + contractId.replace("#", "%23") + "' target='marlowe'>" + contractId + "</a>"
+  uiContractId.innerHTML = "<a href='https://preprod.marlowescan.com/contractView?tab=info&contractId=" + contractId.replace("#", "%23") + "' target='marlowe'>" + contractId + "</a>"
 }
 
 

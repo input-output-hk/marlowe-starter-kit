@@ -41,5 +41,5 @@ All the above endpoints also accept witnessset as a payload for PUT request.
 
 The application is served from [http://127.0.0.1:3000](http://127.0.0.1:3000). It requires the following:
 
-- [Nami](https://namiwallet.io/) wallet is installed in the web browser.
+- [Nami](https://namiwallet.io/) wallet is installed in the web browser. (This web application was tested against Nami 3.5.0.)
 - Nami is connected to an address with at least 100 ada on the Cardano preproduction network.

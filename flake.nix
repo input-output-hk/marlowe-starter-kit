@@ -33,7 +33,7 @@
   };
 
   outputs = { self, flake-compat, flake-utils, nixpkgs, jupyenv, marlowe, cardano-world }:
-    flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
+    flake-utils.lib.eachSystem [ "x86_64-linux" "x86_64-darwin" ] (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
         mp = marlowe.packages.${system};

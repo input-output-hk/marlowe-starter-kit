@@ -76,9 +76,9 @@
       in rec {
         packages = {
           inherit jupyterlab;
-          marlowe-runtime-cli = mp.marlowe-runtime-cli;
-          marlowe-cli = mp.marlowe-cli;
-          marlowe-pipe = mp.marlowe.haskell.packages.marlowe-apps.components.exes.marlowe-pipe;
+          marlowe-runtime-cli = mp.ghc8107-marlowe-runtime-cli-exe-marlowe-runtime-cli;
+          marlowe-cli = mp.ghc8107-marlowe-cli-exe-marlowe-cli;
+          marlowe-pipe = mp.ghc8107-marlowe-apps-exe-marlowe-pipe;
         };
         packages.default = jupyterlab;
         apps = {

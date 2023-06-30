@@ -44,7 +44,7 @@ These notes document setting up and deploying Marlowe Runtime on a cloud instanc
       "kind": "compute#attachedDisk",
       "mode": "READ_WRITE",
       "interface": "SCSI",
-      "diskSizeGb": "768"
+      "diskSizeGb": "512"
     }
   ],
   "displayDevice": {
@@ -173,3 +173,45 @@ docker-compose ps
 # View the logs.
 docker-compose logs --timestamp --tail 200 --follow
 ```
+
+
+## Create a Nix environment
+
+Install NixOs.
+
+```bash
+sh <(curl -L https://nixos.org/nix/install) --daemon
+```
+
+Add your account as a trusted user.
+
+```bash
+sudo sh -c "echo trusted-users = $USER >> /etc/nix/nix.conf"
+```
+
+Restart the Nix daemon.
+
+```bash
+sudo systemctl restart nix-daemon.service
+```
+
+Close the current shell/terminal session and enter a new one.
+
+
+### Enter a development environment
+
+The Marlowe Runtime development environment has tools such as `marlowe-runtime-cli` and `cardano-cli` installed.
+
+```bash
+nix develop --extra-experimental-features nix-command --extra-experimental-features flakes
+```
+
+### Launch a Jupyter notebook server
+
+The Jupyter notebook kernel for Marlowe contains tools such as `marlowe-runtime-cli` and can be used to run the starter kit lessons.
+
+```bash
+nix run --extra-experimental-features nix-command --extra-experimental-features flakes
+```
+
+Use a web browser to visit the URL for the Jupyter notebook server.

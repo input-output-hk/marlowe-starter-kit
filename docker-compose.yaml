@@ -14,7 +14,7 @@ services:
     restart: unless-stopped
     volumes:
     - shared:/ipc
-    - node-db:/opt/cardano/data
+    - node-db:/data
 
   postgres:
     environment:

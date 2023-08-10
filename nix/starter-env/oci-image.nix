@@ -3,7 +3,7 @@ let
   inherit (inputs) self std n2c srcDir;
   inherit (pkgs.lib) removePrefix mapAttrsToList mapAttrs;
   inherit (pkgs.lib.strings) concatMapStrings;
-  inherit (self) operables;
+  inherit (self) operables devshell;
 
   # This task creates a /notebook folder in the docker image
   # with the files required to run the starter kit notebook
@@ -51,6 +51,16 @@ let
         license = "Apache-2.0";
       };
     };
+    # NOTE: This is an attempt to create a docker image with the same devshell that you
+    #       get when you do `nix develop`. Right now is failing to build so it is commented,
+    #       but this image should replace the one above once it is working.
+    # marlowe-starter-kit-dev = std.lib.ops.mkDevOCI {
+    #   name = "marlowe-starter-kit-dev";
+    #   tag = "latest";
+    #   inherit devshell;
+    #   runtimeShell = pkgs.zsh;
+    #   vscode = true;
+    # };
   };
 
   forAllImages = f: concatMapStrings (s: s + "\n") (mapAttrsToList f images);

@@ -62,7 +62,6 @@
           p.jq
           p.json2yaml
           p.yaml2json
-          p.nil
         ];
         inherit (jupyenv.lib.${system}) mkJupyterlabNew;
         jupyterlab = mkJupyterlabNew ({...}: {
@@ -116,6 +115,7 @@
         devShellSTD = import ./nix/starter-env/devshell.nix {
           inputs = {
             inherit jupyterlab;
+            inherit pkgs;
             mp = marlowe.packages.${system};
             cp = cardano-world.${system}.cardano.packages;
             extraP = extraPackages pkgs;
@@ -132,6 +132,7 @@
             n2c = n2c.packages.${system};
             self = {
               inherit operables;
+              devshell = devShellSTD;
             };
           };
         };

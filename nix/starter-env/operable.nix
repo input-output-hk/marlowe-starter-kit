@@ -14,12 +14,7 @@ in
       runtimeInputs = extraP ++ [
         pkgs.coreutils
         pkgs.nodejs
+        pkgs.postgresql
       ];
     };
 }
-
-
-
-
-
-

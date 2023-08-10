@@ -1,7 +1,6 @@
 version: "2.2"
 
 services:
-
   node:
     environment:
       - NETWORK=${NETWORK:?err}
@@ -208,6 +207,30 @@ services:
     restart: unless-stopped
     ports:
     - 3780:3780
+
+  notebook:
+    environment:
+    - CARDANO_NODE_SOCKET_PATH=/ipc/node.socket
+    - MARLOWE_RT_HOST=proxy
+    - MARLOWE_RT_PORT=3700
+    - MARLOWE_RT_WEBSERVER_HOST=web-server
+    - MARLOWE_RT_WEBSERVER_PORT=3780
+    - MARLOWE_RT_WEBSERVER_URL=http://web-server:3780
+    - CARDANO_TESTNET_MAGIC=${CARDANO_TESTNET_MAGIC}
+    - PGHOST=postgres
+    - PGUSER=postgres
+    - PGPASSWORD=postgres
+    depends_on:
+      - web-server
+    # TODO: Don't merge to main until this is changed.
+    #       PLT-6808
+    # image: marlowe-starter-kit:latest
+    image: ghcr.io/hrajchert/marlowe-starter-kit:2023-aug-10
+    volumes:
+      - shared:/ipc
+      - ./keys:/notebook/keys
+    ports:
+      - 8080:8080
 
 volumes:
   node-db: null

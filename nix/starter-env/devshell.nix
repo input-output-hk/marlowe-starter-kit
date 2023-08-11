@@ -6,32 +6,32 @@
     commands = [
         {
             name = "marlowe-cli";
-            package = inputs.mp.ghc8107-marlowe-cli-exe-marlowe-cli;
+            package = inputs.mp.marlowe-cli-exe-marlowe-cli-ghc8107;
             category = "1 - Marlowe + Cardano";
         }
         {
             name = "marlowe-finder";
-            package = inputs.mp.ghc8107-marlowe-apps-exe-marlowe-finder;
+            package = inputs.mp.marlowe-apps-exe-marlowe-finder-ghc8107;
             category = "1 - Marlowe + Cardano";
         }
         {
             name = "marlowe-runtime-cli";
-            package = inputs.mp.ghc8107-marlowe-runtime-cli-exe-marlowe-runtime-cli;
+            package = inputs.mp.marlowe-runtime-cli-exe-marlowe-runtime-cli-ghc8107;
             category = "1 - Marlowe + Cardano";
         }
         {
             name = "marlowe-pipe";
-            package = inputs.mp.ghc8107-marlowe-apps-exe-marlowe-pipe;
+            package = inputs.mp.marlowe-apps-exe-marlowe-pipe-ghc8107;
             category = "1 - Marlowe + Cardano";
         }
         {
             name = "marlowe-scaling";
-            package = inputs.mp.ghc8107-marlowe-apps-exe-marlowe-scaling;
+            package = inputs.mp.marlowe-apps-exe-marlowe-scaling-ghc8107;
             category = "1 - Marlowe + Cardano";
         }
         {
             name = "marlowe-oracle";
-            package = inputs.mp.ghc8107-marlowe-apps-exe-marlowe-oracle;
+            package = inputs.mp.marlowe-apps-exe-marlowe-oracle-ghc8107;
             category = "1 - Marlowe + Cardano";
         }
         {

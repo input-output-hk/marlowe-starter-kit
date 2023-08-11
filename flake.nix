@@ -29,7 +29,7 @@
       type = "github";
       owner = "input-output-hk";
       repo = "marlowe-cardano";
-      ref = "runtime@v0.0.4-rc1";
+      ref = "runtime@v0.0.4";
     };
     cardano-world.follows = "marlowe/cardano-world";
     std.url = "github:divnix/std";

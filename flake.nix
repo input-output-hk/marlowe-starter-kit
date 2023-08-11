@@ -29,7 +29,7 @@
       type = "github";
       owner = "input-output-hk";
       repo = "marlowe-cardano";
-      ref = "runtime@v0.0.2";
+      ref = "runtime@v0.0.4-rc1";
     };
     cardano-world.follows = "marlowe/cardano-world";
     std.url = "github:divnix/std";
@@ -45,12 +45,12 @@
         mp = marlowe.packages.${system};
         cp = cardano-world.${system}.cardano.packages;
         extraPackages = p: [
-          mp.ghc8107-marlowe-runtime-cli-exe-marlowe-runtime-cli
-          mp.ghc8107-marlowe-cli-exe-marlowe-cli
-          mp.ghc8107-marlowe-apps-exe-marlowe-finder
-          mp.ghc8107-marlowe-apps-exe-marlowe-oracle
-          mp.ghc8107-marlowe-apps-exe-marlowe-pipe
-          mp.ghc8107-marlowe-apps-exe-marlowe-scaling
+          mp.marlowe-runtime-cli-exe-marlowe-runtime-cli-ghc8107
+          mp.marlowe-cli-exe-marlowe-cli-ghc8107
+          mp.marlowe-apps-exe-marlowe-finder-ghc8107
+          mp.marlowe-apps-exe-marlowe-oracle-ghc8107
+          mp.marlowe-apps-exe-marlowe-pipe-ghc8107
+          mp.marlowe-apps-exe-marlowe-scaling-ghc8107
           cp.cardano-address
           cp.cardano-cli
           cp.cardano-wallet

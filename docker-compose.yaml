@@ -222,10 +222,12 @@ services:
       - web-server
     # TODO: Don't merge to main until this is changed.
     #       PLT-6808
-    # image: marlowe-starter-kit:latest
-    image: ghcr.io/hrajchert/marlowe-starter-kit:2023-aug-10
+    image: marlowe-starter-kit:latest
+    # image: ghcr.io/hrajchert/marlowe-starter-kit:2023-aug-10
     volumes:
       - shared:/ipc
+      - ./setup:/notebook/setup
+      - ./lessons:/notebook/lessons
       - ./keys:/notebook/keys
     ports:
       - 8080:8080

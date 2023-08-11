@@ -20,11 +20,10 @@ let
     ''
       mkdir -p $out/notebook
 
-      cp -r ${srcDir}/*.ipynb $out/notebook
+      cp -r ${srcDir}/lessons $out/notebook
       cp -r ${srcDir}/images $out/notebook
-      cp -r ${srcDir}/mainnet $out/notebook
-      cp -r ${srcDir}/preprod $out/notebook
-      cp -r ${srcDir}/preview $out/notebook
+      cp -r ${srcDir}/setup $out/notebook
+      cp -r ${srcDir}/networks $out/notebook
       # NOTE: This was an attempt to make a first build of the jupyter notebooks
       #       but fails
       # TODO: Try to fix or delete

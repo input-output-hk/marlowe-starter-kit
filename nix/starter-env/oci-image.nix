@@ -24,6 +24,7 @@ let
       cp -r ${srcDir}/images $out/notebook
       cp -r ${srcDir}/setup $out/notebook
       cp -r ${srcDir}/networks $out/notebook
+      cp -r ${srcDir}/scripts $out/notebook
       # NOTE: This was an attempt to make a first build of the jupyter notebooks
       #       but fails
       # TODO: Try to fix or delete

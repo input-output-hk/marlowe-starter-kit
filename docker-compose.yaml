@@ -35,7 +35,7 @@ services:
     restart: unless-stopped
     volumes:
     - postgres:/var/lib/postgresql/data
-    - ./${NETWORK:?err}/init.sql:/docker-entrypoint-initdb.d/init.sql
+    - ./networks/${NETWORK:?err}/init.sql:/docker-entrypoint-initdb.d/init.sql
     command:
       - '-c'
       - 'max_connections=1000'
@@ -73,7 +73,7 @@ services:
     restart: unless-stopped
     volumes:
     - shared:/ipc
-    - ./${NETWORK:?err}/node:/node
+    - ./networks/${NETWORK:?err}/node:/node
 
   chain-sync:
     environment:
@@ -98,7 +98,7 @@ services:
     restart: unless-stopped
     volumes:
     - shared:/ipc
-    - ./${NETWORK:?err}/node:/node
+    - ./networks/${NETWORK:?err}/node:/node
 
   indexer:
     environment:
@@ -214,7 +214,7 @@ services:
     - MARLOWE_RT_WEBSERVER_HOST=web-server
     - MARLOWE_RT_WEBSERVER_PORT=3780
     - MARLOWE_RT_WEBSERVER_URL=http://web-server:3780
-    - CARDANO_TESTNET_MAGIC=${CARDANO_TESTNET_MAGIC}
+    - NETWORK=${NETWORK:?err}
     - PGHOST=postgres
     - PGUSER=postgres
     - PGPASSWORD=postgres
@@ -229,6 +229,7 @@ services:
       - ./setup:/notebook/setup
       - ./lessons:/notebook/lessons
       - ./keys:/notebook/keys
+      - ./scripts:/notebook/scripts
     ports:
       - 8080:8080
 

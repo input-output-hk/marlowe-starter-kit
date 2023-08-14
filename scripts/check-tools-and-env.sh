@@ -6,13 +6,22 @@ echo "## Check CLI commands ##"
 echo "########################"
 echo ""
 
+
+# Make sure that we are sourced, not executed
+(return 0 2>/dev/null) && sourced=1 || sourced=0
+if [ $sourced != 1 ]; then
+  echo "You must source this script, rather than try to run it."
+  echo "$ source $0"
+  exit 1
+fi
+
 # Make sure that all required programs are available
 declare -a requiredPrograms=("jq" "json2yaml" "marlowe-cli" "marlowe-runtime-cli" "cardano-cli" "cardano-address" "cardano-wallet")
 for program in "${requiredPrograms[@]}"
 do
   if ! [ -x "$(command -v $program)" ]; then
     echo "Error: $program is not installed." >&2
-    exit 1
+    return 1
   fi
 done
 
@@ -21,8 +30,6 @@ for program in "${requiredPrograms[@]}"
 do
   echo "  * $program"
 done
-
-
 
 echo ""
 echo "#########################"
@@ -36,7 +43,7 @@ for envVariable in "${requiredEnvVariables[@]}"
 do
   if [ -z "${!envVariable}" ]; then
     echo "Error: $envVariable is not set." >&2
-    exit 1
+    return 1
   fi
 done
 

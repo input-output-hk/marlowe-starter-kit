@@ -122,7 +122,8 @@
             extraP = extraPackages pkgs;
             std = std.${system};
           };
-          cell = {};
+          cell = {
+          };
         };
         oci-images = import ./nix/starter-env/oci-image.nix {
           inherit pkgs;

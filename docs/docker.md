@@ -1,17 +1,12 @@
 # Local deploys with Docker
 
-This page provides instructions on setting up a local environment for running the Marlowe examples in this starter kit using Docker.
+This page provides instructions on setting up a local environment for running the `lessons` in this starter kit using Docker. There are two recipies included in this page:
+* Full deploy with Docker
+* Runtime deploy with Docker + Jupyter notebook with nix (only for linux)
 
-## Marlowe Runtime Architecture
+Both options include a Runtime deploy using docker. The difference is that the first also includes a Docker container with the Jupyter notebook and all the required tools, while the other expects you to have them installed in your PATH. The second option is only available for Linux as you can't access the node socket running inside a Docker container from a Windows or Mac host.
 
-The Marlowe Runtime consists of several backend services that works together with a web server.
-
-![The architecture of Marlowe Runtime](images/runtime-architecture.png)
-
-
-## Deploying Marlowe Runtime Locally Using Docker
-
-First, make sure that docker and [docker-compose](https://docs.docker.com/compose/install/) are installed on your system.
+Make sure that docker and [docker-compose](https://docs.docker.com/compose/install/) are installed on your system.
 
 > Note that some installations of docker might use the command `docker compose` instead of `docker-compose`.
 
@@ -19,52 +14,44 @@ These instructions were tested with:
 - Docker version 20.10.5 and Docker Compose Version 1.25.0 under Debian 5.10.162.
 - Docker desktop 4.20.1 on a Mac Ventura.
 
-### Network Selection
+## Marlowe Runtime Architecture
+
+The Marlowe Runtime consists of several backend services that works together with a web server.
+
+![The architecture of Marlowe Runtime](../images/runtime-architecture.png)
+
+## Get a copy of the starter kit
+
+If you haven't done it yet, clone a local version of the starter kit
+
+```console
+$ git clone https://github.com/input-output-hk/marlowe-starter-kit/
+$ cd marlowe-starter-kit
+```
+
+## Network Selection
 
 Select either the public Cardano testnet pre-production (`preprod`) or preview (`preview`). The `preprod` network is easiest to start with because it contains fewer transactions than `preview`, which makes synchronize the Cardano Node and the Marlowe Runtime indexers much faster.
 
 ```console
 $ export NETWORK=preprod
-$ export CARDANO_TESTNET_MAGIC=1
 # Or
 $ export NETWORK=preview
-$ export CARDANO_TESTNET_MAGIC=2
 # Or
 $ export NETWORK=mainnet
 ```
 
-> Note that mainnet doesn't require a `CARDANO_TESTNET_MAGIC` environment variable.
+### Full deploy with Docker
 
-### Starting the Docker Containers
+The docker-compose file includes all the runtime services and a container with the jupyter notebooks and all the required tools.
 
-Now start the docker containers. Here we use `docker-compose`.
+
+Start the containers using:
 
 
 ```console
-$ git clone https://github.com/input-output-hk/marlowe-starter-kit/
-$ cd marlowe-starter-kit
 $ docker-compose up -d
 ```
-
-```console
-Creating network "marlowe-starter-kit_default" with the default driver
-Creating marlowe-starter-kit-postgres-1      ... done
-Creating marlowe-starter-kit-node-1          ... done
-Creating marlowe-starter-kit-chain-indexer-1 ... done
-Creating marlowe-starter-kit-chain-sync-1    ... done
-Creating marlowe-starter-kit-tx-1            ... done
-Creating marlowe-starter-kit-indexer-1       ... done
-Creating marlowe-starter-kit-sync-1          ... done
-Creating marlowe-starter-kit-proxy-1         ... done
-Creating marlowe-starter-kit-web-server-1    ... done
-Creating marlowe-starter-kit-notebook-1      ... done
-```
-
-
-## Check the Health of the Marlowe Runtime Services
-
-
-### Docker
 
 Check to make sure that all of the services were created and have the status "Up".
 
@@ -89,9 +76,6 @@ marlowe-starter-kit-web-server-1      /bin/entrypoint                 Up        
 ```
 
 Use the command `docker-compose stop` to stop the services and the command `docker-compose start` to restart them. The command `docker-compose down` will stop the services and destroy the data folders the resources used by the services: unless external volumes were used when starting the services, the Cardano blockchain and Marlowe database will be removed.
-
-
-### Jupyter notebook
 
 Our entrypoint for the starter kit is a container that has a Jupyter notebook server with all the proper tools and environment variables set up. The first time it runs it might take a while to initialize, make sure the logs reach to this point
 
@@ -122,46 +106,40 @@ $ docker logs marlowe-starter-kit-notebook-1
 
 Once you see the message `Jupyter Notebook 6.5.3 is running at:` you can access the notebooks through http://localhost:8080.
 
-Execute the the `setup/local-environment.ipynb` notebook to check the health and sync progress of the runtime.
+Follow the steps in the [setup/local-environment](http://localhost:8080/notebooks/setup/local-environment.ipynb) notebook to check the health and sync progress of the runtime.
 
 
-## Connect from the host machine
+## Runtime deploy with Docker + Jupyter notebook with nix
+If you want to run the jupyer notebooks from the HOST (currently only available in Linux) you can use the nix shell to get all the required tools and environment variables set up.
 
-Docker compose orchestrates the different services in the Marlowe Starter Kit as containers. The following services are accesible to the HOST through `localhost`.
-
-| Service | Port |
-| --- | --- |
-| Marlowe Runtime Web Server | 3780 |
-| Jupyter Notebook | 8080 |
-| Marlowe Runtime Cli | 3700 |
-
-A cardano node instance is also executed inside a container, and in order to use tools like `cardano-cli` from the HOST you need access to the node socket.
-
-The following instructions only works on Linux, because Windows and Mac run the container inside a VM and file sockets can't be shared from the HOST to a VM.
-
-You can use `nix` to access `jq`, `cardano-cli`, `marlowe-runtime-cli` and other tools without having to globally install them. Make sure that the [Nix package manager](https://nix.dev/tutorials/install-nix) with [Nix flakes support enabled](https://nixos.wiki/wiki/Flakes#Enable_flakes) is installed. ***Be sure to set yourself as a trusted user in the `nix.conf`; otherwise, build times will be very long.***
+First make sure you have [nix](https://nixos.org/download.html) with [flakes](https://nixos.wiki/wiki/Flakes) configured and the [IOHK binary caches](https://github.com/input-output-hk/marlowe-cardano#iohk-binary-cache). Then enter the nix shell by executing
 
 ```console
-$ git clone https://github.com/input-output-hk/marlowe-starter-kit/
-$ cd marlowe-starter-kit
 $ nix develop
 ```
 
-The following script will set the `CARDANO_NODE_SOCKET_PATH` environment variable and open the permissions to the socket.
+After all the tools are downloaded you'll se a greeting message with some of the tools listed.
 
-```bash
-export CARDANO_NODE_SOCKET_PATH=$(docker volume inspect marlowe-starter-kit_shared | jq -r '.[0].Mountpoint')/node.socket
+Select the network and start the services without the notebook container
 
-f=$(dirname $CARDANO_NODE_SOCKET_PATH)
-while [[ $f != / ]]; do sudo chmod a+rx "$f"; f=$(dirname "$f"); done
-sudo chmod a+rwx $CARDANO_NODE_SOCKET_PATH
+```console
+$ export NETWORK=preprod
+$ docker-compose up -d --scale notebook=0
 ```
 
-You can then use `cardano-cli` to query the node.
+After the services have started, you can execute the following inside the nix shell to configure the needed variables.
 
 
 ```console
-$ cardano-cli query tip --testnet-magic "$CARDANO_TESTNET_MAGIC" | json2yaml
+$ source scripts/fill-variables-from-docker.sh
 ```
 
-You can see other relevent environment variables in the [environment-variables.md](./environment-variables.md) document.
+The script might complain about the node socket not being writable, if that happens follow the `chmod`` suggestions and try again.
+
+After the variables are set up you can start the jupyter notebook server with
+
+```console
+$ jupyter notebook --ip='*' --NotebookApp.token="" --NotebookApp.password="" --port 8080 --no-browser
+```
+
+Follow the steps in the [setup/local-environment](http://localhost:8080/notebooks/setup/local-environment.ipynb) notebook to check the health and sync progress of the runtime.

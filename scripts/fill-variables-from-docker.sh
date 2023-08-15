@@ -39,7 +39,7 @@ fi
 if [ ! -w "${CARDANO_NODE_SOCKET_PATH}" ]; then
   echo "Error: CARDANO_NODE_SOCKET_PATH is not writable: $CARDANO_NODE_SOCKET_PATH"
   echo "    try to execute:"
-  echo "    sudo chmod a+rwx $f"
+  echo "    sudo chmod a+rwx $CARDANO_NODE_SOCKET_PATH"
 
   # For each directory try to see if its executable (we can enter)
   f=$(dirname $CARDANO_NODE_SOCKET_PATH)

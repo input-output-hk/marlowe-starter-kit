@@ -60,6 +60,7 @@
           p.curl
           p.gnused
           p.jq
+          p.gnugrep
           p.json2yaml
           p.yaml2json
           p.postgresql

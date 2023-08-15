@@ -106,7 +106,7 @@ $ docker logs marlowe-starter-kit-notebook-1
 
 Once you see the message `Jupyter Notebook 6.5.3 is running at:` you can access the notebooks through http://localhost:8080.
 
-Follow the steps in the [setup/local-environment](http://localhost:8080/notebooks/setup/local-environment.ipynb) notebook to check the health and sync progress of the runtime.
+Follow the steps in the [setup/00-local-environment](http://localhost:8080/notebooks/setup/00-local-environment.ipynb) notebook to check the health and sync progress of the runtime.
 
 
 ## Runtime deploy with Docker + Jupyter notebook with nix
@@ -142,4 +142,6 @@ After the variables are set up you can start the jupyter notebook server with
 $ jupyter notebook --ip='*' --NotebookApp.token="" --NotebookApp.password="" --port 8080 --no-browser
 ```
 
-Follow the steps in the [setup/local-environment](http://localhost:8080/notebooks/setup/local-environment.ipynb) notebook to check the health and sync progress of the runtime.
+Follow the steps in the [setup/00-local-environment](http://localhost:8080/notebooks/setup/00-local-environment.ipynb) notebook to check the health and sync progress of the runtime.
+
+Make sure that the kernel is ready before executing the commands.

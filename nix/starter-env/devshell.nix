@@ -10,6 +10,7 @@
         curl
         gnused
         jq
+        gnugrep
         postgresql
     ];
     nixago = [

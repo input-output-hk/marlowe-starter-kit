@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-set -e
-
 echo "########################"
 echo "## Check CLI commands ##"
 echo "########################"
@@ -68,19 +66,30 @@ elif [ "${NETWORK}" == "preview" ]; then
   export CARDANO_TESTNET_MAGIC=2
 fi
 
-
-# See if the CARDANO_TESTNET_MAGIC env variable is set, if it is, check if it is the value 1 and print preprod, check if the value is 2 and print preview if it is a different value print it with a warning and if the variable is unset print mainnet
+# See if the CARDANO_TESTNET_MAGIC env variable is set
 if [ -z "${CARDANO_TESTNET_MAGIC}" ]; then
-  # See if the NETWORK variable is set to mainnet, if it is print mainnet, if its not print warnign
-  if [ -z "${NETWORK}" ]; then
-    echo "WARNING: Both NETWORK and CARDANO_TESTNET_MAGIC are unset, assuming mainnet, be careful"
-  elif [ "${NETWORK}" == "mainnet" ]; then
+  export "CARDANO_SCAN_URL=https://cardanoscan.io"
+  export "MARLOWE_SCAN_URL=https://mainnet.marlowescan.com"
+
+  # WARN if NETWORK is not an explicit mainnet
+  if [ "${NETWORK}" == "mainnet" ]; then
     echo "The NETWORK is set to mainnet"
+  elif [ "${NETWORK}" == "mainnet" ]; then
+    echo "WARNING: CARDANO_TESTNET_MAGIC is unset, assuming mainnet. BE CAREFUL"
   fi
 elif [ "${CARDANO_TESTNET_MAGIC}" == "1" ]; then
   echo "The NETWORK is set to preprod"
+  export "CARDANO_SCAN_URL=https://preprod.cardanoscan.io"
+  export "MARLOWE_SCAN_URL=https://preprod.marlowescan.com"
+
 elif [ "${CARDANO_TESTNET_MAGIC}" == "2" ]; then
   echo "The NETWORK is set to preview"
+  export "CARDANO_SCAN_URL=https://preview.cardanoscan.io"
+  export "MARLOWE_SCAN_URL=https://preview.marlowescan.com"
+
 else
   echo "Warning: unknown network ${CARDANO_TESTNET_MAGIC}"
 fi
+echo "CARDANO_SCAN_URL = $CARDANO_SCAN_URL"
+echo "MARLOWE_SCAN_URL = $MARLOWE_SCAN_URL"
+

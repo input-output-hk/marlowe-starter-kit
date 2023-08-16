@@ -79,11 +79,13 @@ if [ -z "${CARDANO_TESTNET_MAGIC}" ]; then
   fi
 elif [ "${CARDANO_TESTNET_MAGIC}" == "1" ]; then
   echo "The NETWORK is set to preprod"
+  echo "CARDANO_TESTNET_MAGIC = $CARDANO_TESTNET_MAGIC"
   export "CARDANO_SCAN_URL=https://preprod.cardanoscan.io"
   export "MARLOWE_SCAN_URL=https://preprod.marlowescan.com"
 
 elif [ "${CARDANO_TESTNET_MAGIC}" == "2" ]; then
   echo "The NETWORK is set to preview"
+  echo "CARDANO_TESTNET_MAGIC = $CARDANO_TESTNET_MAGIC"
   export "CARDANO_SCAN_URL=https://preview.cardanoscan.io"
   export "MARLOWE_SCAN_URL=https://preview.marlowescan.com"
 

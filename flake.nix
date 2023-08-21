@@ -60,8 +60,10 @@
           p.curl
           p.gnused
           p.jq
+          p.gnugrep
           p.json2yaml
           p.yaml2json
+          p.postgresql
         ];
         inherit (jupyenv.lib.${system}) mkJupyterlabNew;
         jupyterlab = mkJupyterlabNew ({...}: {
@@ -121,7 +123,8 @@
             extraP = extraPackages pkgs;
             std = std.${system};
           };
-          cell = {};
+          cell = {
+          };
         };
         oci-images = import ./nix/starter-env/oci-image.nix {
           inherit pkgs;

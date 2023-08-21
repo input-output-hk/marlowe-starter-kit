@@ -3,7 +3,7 @@ let
   inherit (inputs) self std n2c srcDir;
   inherit (pkgs.lib) removePrefix mapAttrsToList mapAttrs;
   inherit (pkgs.lib.strings) concatMapStrings;
-  inherit (self) operables;
+  inherit (self) operables devshell;
 
   # This task creates a /notebook folder in the docker image
   # with the files required to run the starter kit notebook
@@ -20,11 +20,11 @@ let
     ''
       mkdir -p $out/notebook
 
-      cp -r ${srcDir}/*.ipynb $out/notebook
+      cp -r ${srcDir}/lessons $out/notebook
       cp -r ${srcDir}/images $out/notebook
-      cp -r ${srcDir}/mainnet $out/notebook
-      cp -r ${srcDir}/preprod $out/notebook
-      cp -r ${srcDir}/preview $out/notebook
+      cp -r ${srcDir}/setup $out/notebook
+      cp -r ${srcDir}/networks $out/notebook
+      cp -r ${srcDir}/scripts $out/notebook
       # NOTE: This was an attempt to make a first build of the jupyter notebooks
       #       but fails
       # TODO: Try to fix or delete
@@ -51,6 +51,16 @@ let
         license = "Apache-2.0";
       };
     };
+    # NOTE: This is an attempt to create a docker image with the same devshell that you
+    #       get when you do `nix develop`. Right now is failing to build so it is commented,
+    #       but this image should replace the one above once it is working.
+    # marlowe-starter-kit-dev = std.lib.ops.mkDevOCI {
+    #   name = "marlowe-starter-kit-dev";
+    #   tag = "latest";
+    #   inherit devshell;
+    #   runtimeShell = pkgs.zsh;
+    #   vscode = true;
+    # };
   };
 
   forAllImages = f: concatMapStrings (s: s + "\n") (mapAttrsToList f images);

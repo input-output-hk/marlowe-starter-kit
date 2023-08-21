@@ -60,9 +60,10 @@
           p.curl
           p.gnused
           p.jq
+          p.gnugrep
           p.json2yaml
           p.yaml2json
-          p.nil
+          p.postgresql
         ];
         inherit (jupyenv.lib.${system}) mkJupyterlabNew;
         jupyterlab = mkJupyterlabNew ({...}: {
@@ -116,12 +117,14 @@
         devShellSTD = import ./nix/starter-env/devshell.nix {
           inputs = {
             inherit jupyterlab;
+            inherit pkgs;
             mp = marlowe.packages.${system};
             cp = cardano-world.${system}.cardano.packages;
             extraP = extraPackages pkgs;
             std = std.${system};
           };
-          cell = {};
+          cell = {
+          };
         };
         oci-images = import ./nix/starter-env/oci-image.nix {
           inherit pkgs;
@@ -132,6 +135,7 @@
             n2c = n2c.packages.${system};
             self = {
               inherit operables;
+              devshell = devShellSTD;
             };
           };
         };

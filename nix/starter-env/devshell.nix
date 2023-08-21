@@ -1,6 +1,18 @@
 { inputs, cell}: {
   default = inputs.std.lib.dev.mkShell {
-
+    packages = with inputs.pkgs; [
+        nil
+        json2yaml
+        yaml2json
+        gcc
+        z3
+        coreutils
+        curl
+        gnused
+        jq
+        gnugrep
+        postgresql
+    ];
     nixago = [
     ];
     commands = [

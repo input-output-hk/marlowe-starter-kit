@@ -10,7 +10,7 @@ This repository contains lessons for using Marlowe via REST and at the command l
       -  Select the "Marlowe Tutorial" starter kit.
       -  Be sure to turn on the "Cardano Nodes" and "Cardano Marlowe Runtime" extensions.
       -  Check that those match the network you are using for the starter kit.
-    - [Deploy Marlowe Runtime locally with docker](docker.md) and [launching Marlowe Runtime using Docker (video) (9:48)](https://youtu.be/45F5ld8NNHM).
+    - [Deploy Marlowe Runtime locally with docker](/docs/docker.md) and [launching Marlowe Runtime using Docker (video) (9:48)](https://youtu.be/45F5ld8NNHM).
 - [Lessons](#lessons)
     - [0. Preliminaries](00-preliminaries.md) and [demonstration of setting up keys and addresses (video) (6:17)](https://youtu.be/hGBmj9ZrYHs)
     - Zero-Coupon Bond (ZCB)
@@ -46,7 +46,7 @@ This repository is meant to be used with [demeter.run](https://demeter.run) to e
 -  Be sure to turn on the "Cardano Nodes" and "Cardano Marlowe Runtime" extensions.
 -  Check that those match the network you are using for the starter kit.
 
-Alternatively, one can [deploy Marlowe Runtime locally with docker](docker.md).
+Alternatively, one can [deploy Marlowe Runtime locally with docker](/docs/docker.md).
 - [Launching Marlowe Runtime using Docker (video) (9:48)](https://youtu.be/45F5ld8NNHM) to set up Marlowe Runtime.
 
 If you are unfamiliar with the Marlowe smart-contract language or with the Cardano blockchain, you may want to familiarize yourself with the following information:

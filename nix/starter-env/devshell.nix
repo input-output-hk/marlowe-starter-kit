@@ -12,6 +12,7 @@
         jq
         gnugrep
         postgresql
+        openssl
     ];
     nixago = [
     ];

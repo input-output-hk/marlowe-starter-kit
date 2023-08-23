@@ -30,7 +30,7 @@ Select Create Project. The project dashboard displays.
 
 ### DCUs
 
-Obtain DCUs (Demeter Compute Units) according to your project needs. You will need to determine your payment method as you go through that process. 
+Obtain DCUs (Demeter Compute Units) according to your project needs. For your first project, Demeter.run offers 6,000,000 free DCUs. Later, you will need to determine your payment method so you can purchase DCUs in the future. 
 
 ### Connecting Cardano Node Extension
 
@@ -42,7 +42,7 @@ Under the heading Shared instances, click the toggle switch corresponding to the
 
 At the top of the Cardano Nodes Extensions page, click Extensions to return to the list of Extensions. 
 
-### Connecting Cardano Marlowe Runtime
+### Connecting Cardano Marlowe Runtime Extension
 
 From the list of extensions, select Cardano Marlowe Runtime. The Cardano Marlowe Runtime panel displays. 
 
@@ -106,25 +106,10 @@ The prompt message Do you trust the authors of the files in this folder? display
 
 A view of the cloned version of the Marlowe Starter Kit displays. The folders and files are listed in a panel in the left side of the workspace. 
 
-### Setup folder
+### Lessons folder
 
-From the left column, expand the item "setup." 
+From the left column, expand the item "lessons," then expand the folder "01-runtime-cli". 
 
-Select the file `00-local-environment.jpynb`. This opens the file titled "Local environment checks." 
+Select the first lesson: `01-runtime.cli.jpynb`. This opens the file titled "Zero-Coupon Bond Using Marlowe Runtime's Command-Line Interface." 
 
-### Command Line Tools and Environment
-
-Scroll down to the code block under the heading Command Line Tools and Environment. 
-
-Select the area just to the left of the code block. Once selected, a blue line displays along the left margin of the page next to the code block. 
-
-At the top of the page, select the field to the right of the filename 00-preliminaries.jpynb. From the drop-down list, select Jupyter Kernel. Select Bash /usr/bin/python3. The code block executes. 
-
-Just below the code block, two lines display: 
-
-CARDANO_NODE_SOCKET_PATH = /jpc/node.socket
-CARDANO_TESTNET_MAGIC = 2
-
-These lines indicate that there is a Cardano node socket and that it is connected to the Cardano testnet magic network. 
-
-At this point, you are connected and ready to run any of the Jupyter notebook files shown in the left panel. 
+You have now completed the setup process for Demeter.run. Please proceed to following the guidance contained in lesson one. 

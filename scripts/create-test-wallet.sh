@@ -74,7 +74,7 @@ cardano-wallet recovery-phrase generate > $KEYS/$WALLET_NAME-recovery-phrase.prv
 # Create the root key from the recovery phrase
 cat $KEYS/$WALLET_NAME-recovery-phrase.prv | cardano-address key from-recovery-phrase Shelley > $KEYS/$WALLET_NAME-rootkey.prv
 
-# TODO Explain
+# Derive the root private key for the wallet, from the seed phrase.
 cat $KEYS/$WALLET_NAME-rootkey.prv | cardano-address key child 1852H/1815H/0H/0/0 > $KEYS/$WALLET_NAME-addr.prv
 
 # Create the signing key for the first address

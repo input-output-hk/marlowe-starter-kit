@@ -51,6 +51,14 @@ do
   echo "  * $envVariable = ${!envVariable}"
 done
 
+# If $KEYS is set, set the FAUCET_ADDR and FAUCET_SKEY variables
+if [ -n "${KEYS}" ]; then
+  export FAUCET_ADDR=$(cat $KEYS/faucet.address)
+  export FAUCET_SKEY=$KEYS/faucet.skey
+  echo "  * FAUCET_ADDR = $FAUCET_ADDR"
+  echo "  * FAUCET_SKEY = $FAUCET_SKEY"
+fi
+
 echo ""
 echo "###################"
 echo "## Check Network ##"

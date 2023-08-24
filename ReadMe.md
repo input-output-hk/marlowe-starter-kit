@@ -4,14 +4,14 @@
 
 Start learning how to build on Marlowe with minimal configuration. This repository contains a series of [Jupyter notebooks](https://jupyterlab.readthedocs.io/en/stable/) that will run through a progression of lessons in the browser.
 
-You can ask questions about Marlowe in [the #ask-marlowe channel on the IOG Discord](https://discord.com/channels/826816523368005654/936295815926927390) or post problems with this lesson to [the issues list for the Marlowe Starter Kit github repository](https://github.com/input-output-hk/marlowe-starter-kit/issues).
+You can ask questions about Marlowe in [the #ask-marlowe channel on the IOG Discord](https://discord.com/channels/826816523368005654/936295815926927390) or post problems with any lesson or notebook to [the issues list for the Marlowe Starter Kit github repository](https://github.com/input-output-hk/marlowe-starter-kit/issues).
 
 
 ## Quick Overview
 
-If you've worked with Docker and containers before, follow the [Docker](docs/docker.md) instructions. Nix users can also use [Docker in their environment](./docs/docker.md#runtime-deploy-with-docker--jupyter-notebook-with-nix).
+If you've worked with Docker and containers before and want to run Marlowe services locally, follow the [Docker](docs/docker.md) instructions. Nix users can also use [Docker in their environment](./docs/docker.md#runtime-deploy-with-docker--jupyter-notebook-with-nix).
 
-Otherwise, [demeter.run](docs/demeter-run.md) provides a free, limited-use hosted environment to run this starter kit entirely in the browser.
+Otherwise, [demeter.run](docs/demeter-run.md) provides a free, limited-use hosted environment to run this starter kit entirely in the browser. This is *highly* recommended for newer users.
 
 Each lesson contains a notebook with helper scripts to verify a working installation of required dependencies. The lessons gradually introduces new concenpts about using Marlowe using smart contracts.
 
@@ -56,7 +56,6 @@ Marlowe Runtime consists of several backend services and work together with a we
 1. [Using Marlowe Safely](docs/using-marlowe-safely.md)
 1. [Marlowe Playground](https://play.marlowe.iohk.io/#/)
 1. [MarloweScan](https://marlowescan.com/)
-1. [Marlowe Runner](https://github.com/input-output-hk/marlowe-runner)
 1. [Marlowe within the Cardano ecosystem](https://developers.cardano.org/docs/smart-contracts/marlowe/)
 
 

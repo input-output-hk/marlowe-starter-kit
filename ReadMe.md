@@ -13,7 +13,7 @@ If you've worked with Docker and containers before and want to run Marlowe servi
 
 Otherwise, [demeter.run](docs/demeter-run.md) provides a free, limited-use hosted environment to run this starter kit entirely in the browser. This is *highly* recommended for newer users.
 
-Each lesson contains a notebook with helper scripts to verify a working installation of required dependencies. The lessons gradually introduces new concenpts about using Marlowe using smart contracts.
+Each lesson contains a notebook with helper scripts to verify a working installation of required dependencies. The lessons gradually introduce new concepts about using Marlowe using smart contracts.
 
 > While these examples are shown using testnet, please review how to [use Marlowe safely](docs/using-marlowe-safely.md) if running on mainnet.
 

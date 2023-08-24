@@ -29,7 +29,7 @@ Additionally, you can watch a [brief video walkthrough (2:32)](https://youtu.be/
 
 ## 2. Local deployment using Docker only
 
-You can deploy [Marlowe Runtime services](https://docs.marlowe.iohk.io/docs/platform-and-architecture/architecture), Jupyter noteboos and a Cardano node locally through Docker. This workflow runs everything in Docker containers. 
+You can deploy [Marlowe Runtime services](https://docs.marlowe.iohk.io/docs/platform-and-architecture/architecture), Jupyter notebooks and a Cardano node locally through Docker. This workflow runs everything in Docker containers. 
 
    * Requires Linux or Intel-based Mac
    * Requires local installation of Docker

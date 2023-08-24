@@ -1,13 +1,14 @@
 # Preliminaries
 
-This document introduces the recommended workflow options available to you for setting up the Marlowe Runtime to enable you to run the different lessons in this starter kit using Jupyter notebook. All these workflows facilitate the deployment of the [Marlowe Runtime services](https://docs.marlowe.iohk.io/docs/platform-and-architecture/architecture).
+This document introduces three workflow options for setting up the [Marlowe Runtime services](https://docs.marlowe.iohk.io/docs/platform-and-architecture/architecture) to enable you to run the various lessons in this starter kit using Jupyter notebook. 
 
-## Hosted deployment
+## 1. Hosted deployment
 
-The simplest and fastest method of deployment is to use the hosted deployment provided by [Demeter.run](https://demeter.run/). 
+The simplest and fastest deployment method is to use the hosted service provided by [Demeter.run](https://demeter.run/). 
 
    * This method is not tied to any specific platform. 
    * The only system requirement is a browser. 
+   * It only takes a few minutes to get started. 
 
 The [Demeter.run](https://demeter.run/) web3 development platform provides two extensions: 
 
@@ -20,15 +21,24 @@ For details, please see the [Demeter run deployment document](demeter-run.md) fo
 
 Additionally, you can watch a [brief video walkthrough (2:32)](https://youtu.be/XnZ8gCjpl1E) of setting up a deployment with Demeter.
 
-## Local deployment using Docker only
+## 2. Local deployment using Docker only
 
-* Local version using full Docker
+You can deploy [Marlowe Runtime services](https://docs.marlowe.iohk.io/docs/platform-and-architecture/architecture), Jupyter notebook and a Cardano node locally through Docker. This workflow runs everything in Docker containers. 
 
-The local version using docker are described in [this document](./docker.md). The **full docker** flow runs both the runtime and the jupyter notebook in docker containers. 
+   * Requires Linux or Intel-based Mac.
+   * Requires local installation of Docker
+   * Requires significant system resources on your local machine.
+   * May take several hours or more to initially sync the Cardano node.
 
-## Local deployment using Docker plus Nix
+For details, please see [Local deploys with Docker](./docker.md). 
 
-* Local version using Docker + Nix
+## 3. Local deployment using a combination of Docker and Nix
 
-The **docker + nix** flow runs the runtime in docker and the jupyter notebook in a nix shell (only available for Linux).
+You can deploy [Marlowe Runtime services](https://docs.marlowe.iohk.io/docs/platform-and-architecture/architecture) and a Cardano node in Docker. 
+
+You can use a nix shell to run the Jupyter notebooks from the HOST and set up all the required tools and environment variables. 
+
+   * Requires Linux
+   * Requires local installation of Docker
+   * Requires Nix
 

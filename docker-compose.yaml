@@ -226,7 +226,7 @@ services:
     # TODO: Don't merge to main until this is changed.
     #       PLT-6808
     # image: marlowe-starter-kit:latest
-    image: ghcr.io/hrajchert/marlowe-starter-kit:2023-aug-16
+    image: ghcr.io/hrajchert/marlowe-starter-kit:2023-aug-23
     volumes:
       - shared:/ipc
       - ./setup:/notebook/setup

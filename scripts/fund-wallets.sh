@@ -37,7 +37,7 @@ declare -a requiredEnvVariables=("FAUCET_ADDR" "FAUCET_SKEY")
 for envVariable in "${requiredEnvVariables[@]}"
 do
   if [ -z "${!envVariable}" ]; then
-    echo "Error: $envVariable is not set." >&2
+    echo "Error: We can't fund ${ADDRESSES[@]} as the $envVariable is not set." >&2
     exit 1
   fi
 done
@@ -55,6 +55,10 @@ ADA=1000000
 FUND_AMOUNT=$((1000 * ADA))
 
 export TOTAL_LOVELACE=$(cardano-cli query utxo --address "$FAUCET_ADDR" $NET_WITH_PREFIX --out-file=/dev/stdout | jq '[.[] | .value.lovelace] | add' )
+if [ "$TOTAL_LOVELACE" == "null" ]; then
+    TOTAL_LOVELACE=0
+fi
+
 echo "Faucet Total lovelaces: $TOTAL_LOVELACE"
 # TOTAL_LOVELACE needs to be bigger than FUND_AMOUNT * number of addresses
 if [ "$TOTAL_LOVELACE" -lt "$(($FUND_AMOUNT * ${#ADDRESSES[@]}))" ]; then
@@ -65,7 +69,7 @@ fi
 # For each address, echo it
 for address in "${ADDRESSES[@]}"
 do
-  echo "Funding $address"
+  echo "Funding $address..."
 done
 echo
 echo
@@ -77,3 +81,5 @@ marlowe-cli util fund-address \
  --source-wallet-credentials "$FAUCET_ADDR":"$FAUCET_SKEY" \
  --submit 600 \
  "${ADDRESSES[@]}"
+
+echo "Done."

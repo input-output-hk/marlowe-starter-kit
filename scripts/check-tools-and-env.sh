@@ -56,7 +56,7 @@ do
 done
 
 # If $KEYS is set, set the FAUCET_ADDR and FAUCET_SKEY variables
-if [ -n "${KEYS}" ]; then
+if [ -n "${KEYS}" ] && [ -f "${KEYS}/faucet.address" ] && [ -f "${KEYS}/faucet.skey" ]; then
   export FAUCET_ADDR=$(cat $KEYS/faucet.address)
   export FAUCET_SKEY=$KEYS/faucet.skey
   echo "  * FAUCET_ADDR = $FAUCET_ADDR"

@@ -14,9 +14,9 @@ jobs:
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
 
       - name: Pull original image
-        run: docker pull ghcr.io/hrajchert/marlowe-starter-kit:${{ github.events.inputs.imageTag }}
+        run: docker pull ghcr.io/hrajchert/marlowe-starter-kit:${{ inputs.imageTag }}
 
       - name: Republish image
         run: |
-          docker tag ghcr.io/hrajchert/marlowe-starter-kit:${{ github.events.inputs.imageTag }} ghcr.io/input-output-hk/marlowe-starter-kit:${{ github.events.inputs.imageTag }}
-          docker push ghcr.io/input-output-hk/marlowe-starter-kit:${{ github.events.inputs.imageTag }}
+          docker tag ghcr.io/hrajchert/marlowe-starter-kit:${{ inputs.imageTag }} ghcr.io/input-output-hk/marlowe-starter-kit:${{ inputs.imageTag }}
+          docker push ghcr.io/input-output-hk/marlowe-starter-kit:${{ inputs.imageTag }}

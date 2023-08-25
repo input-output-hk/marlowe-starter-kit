@@ -57,6 +57,7 @@
           p.gcc
           p.z3
           p.coreutils
+          p.openssl
           p.curl
           p.gnused
           p.jq

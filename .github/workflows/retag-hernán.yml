@@ -1,0 +1,22 @@
+---
+name: "Retag Hernán"
+on:
+  workflow_dispatch:
+    inputs:
+      imageTag:
+        description: 'Tag of the image (must already exist in hrajchert)'
+        required: true
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Authenticate with container registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
+
+      - name: Pull original image
+        run: docker pull ghcr.io/hrajchert/marlowe-starter-kit:${{ github.events.inputs.imageTag }}
+
+      - name: Republish image
+        run: |
+          docker tag ghcr.io/hrajchert/marlowe-starter-kit:${{ github.events.inputs.imageTag }} ghcr.io/input-output-hk/marlowe-starter-kit:${{ github.events.inputs.imageTag }}
+          docker push ghcr.io/input-output-hk/marlowe-starter-kit:${{ github.events.inputs.imageTag }}

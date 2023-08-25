@@ -35,6 +35,10 @@ echo "## Check required envs ##"
 echo "#########################"
 echo ""
 
+if [ -z "${MARLOWE_RT_WEBSERVER_URL}" ]; then
+  export MARLOWE_RT_WEBSERVER_URL="http://${MARLOWE_RT_WEBSERVER_HOST}:${MARLOWE_RT_WEBSERVER_PORT}"
+fi
+
 # Make sure that the required env variables are available
 declare -a requiredEnvVariables=("CARDANO_NODE_SOCKET_PATH" "MARLOWE_RT_HOST" "MARLOWE_RT_PORT" "MARLOWE_RT_WEBSERVER_HOST" "MARLOWE_RT_WEBSERVER_PORT" "MARLOWE_RT_WEBSERVER_URL")
 for envVariable in "${requiredEnvVariables[@]}"

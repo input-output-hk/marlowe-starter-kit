@@ -12,4 +12,5 @@ jobs:
           python-version: '3.11'
       - run: |
           pip install pytest-check-links
-          pytest --links-ext ipynb --check-links ./lessons/..
+          pytest --links-ext ipynb --check-links
+        working-directory: ./lessons

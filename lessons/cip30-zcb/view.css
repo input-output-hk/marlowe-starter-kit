@@ -1,0 +1,51 @@
+
+#uiPanels {
+  display: flex;
+}
+
+#uiPanelLeft {
+  width: 500px;
+/*border-width: 2px;*/
+/*border-style: solid;*/
+/*border-color: lightgray;*/
+  padding: 10px;
+}
+
+#uiPanelRight {
+  flex-grow: 1;
+  padding: 10px;
+  overflow-x: scroll;
+}
+
+#uiContractId {
+  font-family: monospace;
+}
+
+td a {
+  font-family: monospace;
+}
+
+th {
+  text-align: left;
+  padding-top: 30px;
+}
+
+td {
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+table {
+  table-layout: auto;
+  width: 100%;
+}
+
+table input {
+  width: 100%;
+  font-family: monospace;
+}
+
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}

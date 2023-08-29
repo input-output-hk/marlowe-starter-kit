@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="view.css" type="text/css" rel="stylesheet"/>
+    <script src="controller.js" type="application/javascript"> </script>
+    <script type="text/javascript" src="node_modules/renderjson/renderjson.js"></script>
+    <title>Example of Using Marlowe Runtime with Eternl Wallet</title>
+  </head>
+  <body id="uiBody" onload="Controller.initialize(false)">
+    <h1>Example of Using Marlowe Runtime with a CIP30 Wallet</h1>
+    <p>This example shows how to use a Babbage-compatible <a href="https://github.com/cardano-foundation/CIPs/tree/master/CIP-0030" target="marlowe">CIP-30</a> wallet such as <a href="https://eternl.io/" target="marlowe">Eternl</a> to sign Marlowe transactions. The example contract here is a zero-coupon bond, <em>but both the lender and borrower use the same wallet, for simplicity of the example</em>. Use the <code>preprod</code> testnet with this web application, which was tested against Eternl 1.11.13.</p>
+    <div id="uiPanels">
+      <div id="uiPanelLeft">
+        <table>
+          <thead><tr><th colspan="2">Marlowe Runtime</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><label for="uiRuntime">URL</label></td>
+              <td><input id="uiRuntime" type="text"/></td>
+            </tr>
+          </tbody>
+          <thead><tr><th colspan="2">Parameters for contract</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><label for="uiLender">Lender's address:</label></td>
+              <td><input id="uiLender" type="text" onchange="Controller.makeContract()"/></td>
+            </tr>
+            <tr>
+              <td><label for="uiBorrower">Borrower's address:</label></td>
+              <td><input id="uiBorrower" type="text" onchange="Controller.makeContract()"/></td>
+            </tr>
+            <tr>
+              <td><label for="uiPrincipal">Principal amount:</label></td>
+              <td><input id="uiPrincipal" type="text" onchange="Controller.makeContract()"/></td>
+            </tr>
+            <tr>
+              <td><label for="uiInterest">Interest amount:</label></td>
+              <td><input id="uiInterest" type="text" onchange="Controller.makeContract()"/></td>
+            </tr>
+            <tr>
+              <td><label for="uiLoanDeadline">Loan deadline:</label></td>
+              <td><input id="uiLoanDeadline" type="text" onchange="Controller.makeContract()"/></td>
+            </tr>
+            <tr>
+              <td><label for="uiPaybackDeadline">Repayment time:</label></td>
+              <td><input id="uiPaybackDeadline" type="text" onchange="Controller.makeContract()"/></td>
+            </tr>
+          </tbody>
+          <thead><tr><th colspan="2">Transactions</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><button id="uiCreate" type="button" onclick="Controller.createContract()">1. Create contract</button></td>
+              <td><span id="uiCreateTx"/></td>
+            </tr>
+            <tr>
+              <td><button id="uiLoan" type="button" onclick="Controller.depositLoan()">2. Deposit loan</button></td>
+              <td><span id="uiLoanTx"/></td>
+            </tr>
+            <tr>
+              <td><button id="uiWithdrawLoan" type="button" onclick="Controller.withdrawLoan()">3. Withdraw loan</button></td>
+              <td><span id="uiWithdrawLoanTx"/></td>
+            </tr>
+            <tr>
+              <td><button id="uiPayback" type="button" onclick="Controller.depositPayback()">4. Deposit repayment</button></td>
+              <td><span id="uiPaybackTx"/></td>
+            </tr>
+            <tr>
+              <td><button id="uiWithdrawPayback" type="button" onclick="Controller.withdrawPayback()">5. Withdraw repayment</button></td>
+              <td><span id="uiWithdrawPaybackTx"/></td>
+            </tr>
+          </tbody>
+          <thead><tr><th colspan="2">Last message</th></tr></thead>
+          <tbody>
+            <tr>
+              <td id="uiMessage" colspan="2"/>
+            </tr>
+          </tbody>
+          <thead><tr><th colspan="2">Example</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><button id="uiRestart" type="button" onclick="Controller.restart()">Restart example</button></td>
+              <td/>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="uiPanelRight">
+        <table>
+          <thead><tr><th colspan="2">Contract</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Template:</td>
+              <td><img alt="Blockly diagram of the Marlowe contract" src="contract.png"/></td>
+            </tr>
+            <tr>
+              <td>Contract ID:</td>
+              <td><span id="uiContractId"/></td>
+            </tr>
+            <tr>
+              <td>Contract JSON:</td>
+              <td id="uiContract"/>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

@@ -2,9 +2,7 @@
 
 This example shows how to use a Babbage-compatible [CIP30](https://github.com/cardano-foundation/CIPs/tree/master/CIP-0030) wallet such as [Nami](https://namiwallet.io/) to sign Marlowe transactions. The example contract here simply receives a deposit and waits until a specified time before the funds become payable to an address.
 
-[This video](https://youtu.be/EsILiHiNZWk) shows the application in action.
-
-![Screenshot of example application](screenshot.png)
+[This video](https://youtu.be/8Nf7nYuAK6I) shows the application in action.
 
 
 ## CIP30 API

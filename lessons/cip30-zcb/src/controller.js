@@ -144,13 +144,13 @@ function waitCursor() {
  * Report a result and unblock the UI.
  */
 function report(message) {
+  status(message)
   document.body.style.cursor = "default"
   uiCreate.style.cursor = "default"
   uiLoan.style.cursor = "default"
   uiWithdrawLoan.style.cursor = "default"
   uiPayback.style.cursor = "default"
   uiWithdrawPayback.style.cursor = "default"
-  status(message)
 }
 
 
@@ -356,7 +356,7 @@ export async function withdrawPayback() {
       return function() {
         setTx(uiWithdrawPaybackTx, tx)
         uiWithdrawPayback.disabled = true
-        uiCreate.disabled = false
+//      uiCreate.disabled = false
       }
     }
   )

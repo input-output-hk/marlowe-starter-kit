@@ -4,30 +4,36 @@
 'use strict'
 
 
+// Import the CIP45 support module.
+
+import * as CardanoPeerConnect from '@fabianbormann/cardano-peer-connect'
+
 // Use a Bech32 library for converting address formats.
 
 import {bech32} from "bech32"
 
-export const b32 = bech32
 
+// The explorers.
+let cardanoScanUrl = null
+let marloweScanUrl = null
 
 // Connection to the CIP30 wallet.
-var wallet = null
+let wallet = null
 
 // Address of the depositor.
-var address = null
+let address = null
 
 // Identifier for the contract.
-var contractId = null
+let contractId = null
 
 // URL for Marlowe Runtime's /contracts endpoint.
-var contractUrl = null
+let contractUrl = null
 
 // URL for Marlowe Runtime's /contract/*/transactions endpoint.
-var transactionUrl = null
+let transactionUrl = null
 
 // The JSON for the Marlowe contract.
-var contract = {}
+let contract = {}
 
 // Poll every five seconds.
 const delay = 5000
@@ -44,9 +50,19 @@ function setAddress(a) {
   const bytes = []
   for (let c = 0; c < a.length; c += 2)
     bytes.push(parseInt(a.substr(c, 2), 16))
-  address = bech32.encode("addr_test", bech32.toWords(bytes), 1000)
+  let prefix = null
+  if (a[1] == "0") {
+    cardanoScanUrl = "https://preprod.cardanoscan.io"
+    marloweScanUrl = "https://preprod.marlowescan.com"
+    prefix = "addr_test"
+  } else {
+    cardanoScanUrl = "https://cardanoscan.io"
+    marloweScanUrl = "https://mainnet.marlowescan.com"
+    prefix = "addr"
+  }
+  address = bech32.encode(prefix, bech32.toWords(bytes), 1000)
   const display = address.substr(0, 29) + "..." + address.substr(address.length - 24)
-  uiAddress.innerHTML = "<a href='https://preprod.cardanoscan.io/address/" + a + "' target='marlowe'>" + display + "</a>"
+  uiAddress.innerHTML = "<a href='" + cardanoScanUrl + "/address/" + a + "' target='marlowe'>" + display + "</a>"
 }
 
 
@@ -56,7 +72,7 @@ function setAddress(a) {
  */
 function setContract(c) {
   contractId = c
-  uiContractId.innerHTML = "<a href='https://preprod.marlowescan.com/contractView?tab=info&contractId=" + contractId.replace("#", "%23") + "' target='marlowe'>" + contractId + "</a>"
+  uiContractId.innerHTML = "<a href='" + marloweScanUrl + "/contractView?tab=info&contractId=" + contractId.replace("#", "%23") + "' target='marlowe'>" + contractId + "</a>"
 }
 
 
@@ -66,7 +82,7 @@ function setContract(c) {
  * @param [String]  tx      The transaction ID.
  */
 function setTx(element, tx) {
-  element.innerHTML = "<a href='https://preprod.cardanoscan.io/transaction/" + tx + "?tab=utxo' target='marlowe'>" + tx + "</a>"
+  element.innerHTML = "<a href='" + cardanoScanUrl + "/transaction/" + tx + "?tab=utxo' target='marlowe'>" + tx + "</a>"
 }
 
 
@@ -116,9 +132,9 @@ function waitCursor() {
  */
 function report(message) {
   status(message)
-  document.body.style.cursor = "default"
   uiCreate.style.cursor = "default"
   uiDeposit.style.cursor = "default"
+  document.body.style.cursor = "default"
 }
 
 
@@ -187,9 +203,9 @@ export async function createContract() {
       setContract(res.resource.contractId)
       contractUrl = uiRuntime.innerText + "/" + res.links.contract
       const followup = function() {
-        setTx(uiCreateTx, contractId.replace(/#.*$/, ""))
         uiCreate.disabled = true
         uiDeposit.disabled = false
+        setTx(uiCreateTx, contractId.replace(/#.*$/, ""))
       }
       submitTransaction(res.resource.tx.cborHex, contractUrl, waitForConfirmation(contractUrl, followup))
     }
@@ -236,8 +252,9 @@ export async function depositFunds() {
     ]
   , function(tx) {
       return function() {
-        setTx(uiDepositTx, tx)
+        uiCreate.disabled = false
         uiDeposit.disabled = true
+        setTx(uiDepositTx, tx)
       }
     }
   )
@@ -251,6 +268,10 @@ export async function depositFunds() {
  * @param [Function] wait    Action to be performed for waiting for the confirmation.
  */
 function submitTransaction(cborHex, url, wait) {
+  const stateCreate = uiCreate.disabled
+  const stateDeposit = uiDeposit.disabled
+  uiCreate.disabled = true
+  uiDeposit.disabled = true
   status("Signing transaction.")
   wallet.signTx(cborHex, true).then(function(witness) {
     const xhttp = new XMLHttpRequest()
@@ -260,6 +281,8 @@ function submitTransaction(cborHex, url, wait) {
         if (this.status == 202) {
           setTimeout(wait, delay)
 	} else {
+          uiCreate.disabled = stateCreate
+          uiDeposit.disabled = stateDeposit
           report("Transaction submission failed.")
         }
       }
@@ -275,6 +298,8 @@ function submitTransaction(cborHex, url, wait) {
     status("Submitting transaction.")
     xhttp.send(JSON.stringify(req))
   }).catch(function(error) {
+    uiCreate.disabled = stateCreate
+    uiDeposit.disabled = stateDeposit
     report(error)
   })
 }
@@ -292,8 +317,10 @@ function waitForConfirmation(url, followup) {
         if (this.status == 200) {
           const res = JSON.parse(this.responseText)
           if (res.resource.status == "confirmed") {
-            setTimeout(followup, delay)
-            report("Transaction confirmed.")
+            setTimeout(function() {
+              followup()
+              report("Transaction confirmed.")
+            }, delay)
   	} else if (res.resource.status == "submitted") {
             setTimeout(waitForConfirmation(url, followup), delay)
   	} else {
@@ -334,21 +361,49 @@ export async function initialize() {
   uiFundingAmount.disabled = false
   uiDepositTime.disabled = false
 
-  uiCreate.disabled = false
+  uiCreate.disabled = true
   uiDeposit.disabled = true
 
-  // Connect to the wallet.
-  cardano.eternl.enable().then(function(n) {
-    wallet = n
-    wallet.getChangeAddress().then(function(a) {
-      setAddress(a)
-      makeContract()
-    }).catch(function(error) {
-      report(error)
-    })
+  const dAppConnect = new CardanoPeerConnect.DAppPeerConnect({
+    dAppInfo: {
+      name: "Marlowe CIP45 Example",
+      url: "https://examples.marlowe.app:8080/cip45.html"
+    },
+    onApiInject: function(name, addr) {
+      status("CardanoConnect API injected for wallet \"" + name + "\".")
+      cardano[name].enable().then(function(n) {
+        wallet = n
+        wallet.getChangeAddress().then(function(a) {
+          setAddress(a)
+          makeContract()
+          uiCreate.disabled = false
+        }).catch(function(error) {
+          uiCreate.disabled = true
+          report(error)
+        })
   }).catch(function(error) {
     report(error)
   })
+    },
+    onApiEject: function(name, addr) {
+      status("CardanoConnect API ejected for wallet \"" + name + "\".")
+    },
+    verifyConnection: function(walletInfo, callback) {
+      status("Verifying connection for wallet \"" + walletInfo.name + "\" at " + walletInfo.address + ".")
+      callback(true, true)
+    },
+    onConnect: function(addr, walletInfo) {
+      uiWallet.innerText = addr
+      status("Connected to wallet at " + addr + ".")
+      uiCreate.disabled = true
+    },
+    onDisconnect: function() {
+      uiWallet.innerText = ""
+      status("Disconnected from wallet.")
+      uiCreate.disabled = true
+    },
+  })
+  uiMeerkat.innerText = dAppConnect.getAddress()
 
 }
 

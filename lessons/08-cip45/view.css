@@ -3,7 +3,7 @@
   display: flex;
 }
 
-#uiMeerkat, #uiRuntime, #uiAddress, #uiRecipientPolicy, #uiRecipientName, #uiContractId {
+#uiMeerkat, #uiWallet, #uiRuntime, #uiAddress, #uiRecipientPolicy, #uiRecipientName, #uiContractId {
   font-family: monospace;
 }
 

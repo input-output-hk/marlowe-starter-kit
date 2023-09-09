@@ -28,6 +28,7 @@ Lesson | Duration | Prerequsites | Video
 [5 - Swap of Ada for Djed using Marlowe Runtime's Rest API](lessons/05-swap-rest/) | 20 mins | [Preliminaries](setup/00-local-environment.ipynb), [Lesson 2](lessons/02-runtime-rest/) | [video](https://youtu.be/sSrVCRNoytU)
 [6 - Simple web application using a CIP-30 wallet](lessons/06-cip30/) | 5 mins | [Preliminaries](setup/00-local-environment.ipynb), [Lesson 5](lessons/05-swap-rest/) | [video](https://youtu.be/EsILiHiNZWk)
 [7 - Checking the safety of a Marlowe contract](lessons/07-safety/) | 10 mins | [Preliminaries](setup/00-local-environment.ipynb) |
+[8 - Experimental web application using a CIP-45 wallet](lessons/08-cip45/) | 10 mins | [Preliminaries](setup/00-local-environment.ipynb) | [video](https://youtu.be/3cR8tq0WE_8)
 
 ## Under the Hood
 

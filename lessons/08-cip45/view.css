@@ -3,7 +3,7 @@
   display: flex;
 }
 
-#uiMeerkat, #uiWallet, #uiRuntime, #uiAddress, #uiRecipientPolicy, #uiRecipientName, #uiContractId {
+#uiMeerkat, #uiWallet, #uiRuntime, #uiAddress, #uiRecipientPolicy, #uiRecipientName {
   font-family: monospace;
 }
 
@@ -37,4 +37,6 @@ table input {
 body {
   max-width: 100%;
   overflow-x: hidden;
+  font-family: sans-serif;
+  background-color: aliceblue;
 }

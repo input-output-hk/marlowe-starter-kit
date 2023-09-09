@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="view.css" type="text/css" rel="stylesheet"/>
+    <script src="controller.js" type="application/javascript"> </script>
+    <title>Donate via Marleon</title>
+  </head>
+  <body id="uiBody" style="color:darkblue;font-size:smaller" onload="Controller.initialize()">
+    <h1>Donate via Marleon</h1>
+    <p>Marleon is a Marlowe contract for sending tokens to the holder of a Marlowe role token.</p>
+    <ol>
+      <li>Paste the CardanoConnect address <span id="uiMeerkat"></span> into the <code>ConnectionId</code> field on the <code>CardanoConnect</code> settings page of your CIP45-enabled wallet.</li>
+      <li>You will donate <input id="uiFundingAmount" type="number" min="2000000" value="2000000" onchange="Controller.makeContract()"/> testnet lovelace (1 ada = 1,000,000 lovelace) to the holder of the NFT with policy ID <span id="uiRecipientPolicy"></span> and token name <span id="uiRecipientName"></span>.</li>
+      <li><button id="uiCreate" type="button" onclick="Controller.createContract()">Create the contract</button> for making the donation via Marlowe.</li>
+      <li>Sign the creation transaction in your CIP45 wallet.</li>
+      <li>Wait for the creation transaction to be confirmed: <span id="uiContractId" style="font-family:monospace"></span></li>
+      <li><button id="uiDeposit" type="button" onclick="Controller.depositFunds()">Deposit the donation</button> into the Marlowe contract.
+        <br/>
+      </li>
+      <li>Sign the deposit transaction in your CIP45 wallet.</li>
+      <li>Wait for the deposit transaction to be confirmed: <span id="uiDepositTx" style="font-family:monospace"></span></li>
+      <li>Thank you for donating test ada!</li>
+    </ol>
+    <p><em id="uiMessage"/></p>
+    <ul style="display:none">
+      <li id="uiWallet"/>
+      <li id="uiRuntime"/>
+      <li id="uiAddress"/>
+      <li><input id="uiFundingPolicy" type="text" onchange="Controller.makeContract()"/></li>
+      <li><input id="uiFundingName" type="text" onchange="Controller.makeContract()"/></li>
+      <li><input id="uiDepositTime" type="datetime-local" onchange="Controller.makeContract()"/></li>
+      <li id="uiCreateTx"/>
+    </ul>
+  </body>
+</html>

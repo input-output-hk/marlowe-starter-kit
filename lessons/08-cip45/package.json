@@ -7,7 +7,6 @@
   "private": true,
   "main": "src/controller.js",
   "dependencies": {
-    "@cardano-foundation/cardano-connect-with-wallet": "^0.2.6",
     "@fabianbormann/cardano-peer-connect": "^1.2.13",
     "bech32": "^2.0.0"
   },

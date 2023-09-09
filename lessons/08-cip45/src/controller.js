@@ -188,7 +188,7 @@ export async function createContract() {
   , {
       version : "v1"
     , contract : contract
-    , roles : uiFundingPolicy.value
+    , roles : uiRecipientPolicy.innerText
     , minUTxODeposit : 2 * ada
     , metadata : {}
     , tags : {}
@@ -354,7 +354,7 @@ export async function initialize() {
     uiRecipientPolicy.innerText = "d441227553a0f1a965fee7d60a0f724b368dd1bddbc208730fccebcf" // Anyone can mint.
   if (uiRecipientName.innerText == "")
     uiRecipientName.innerText = "Token"
-  uiDepositTime.value = (new Date(new Date() - ((new Date()).getTimezoneOffset() - 20) * 60 * 1000)).toISOString().replace("Z", "")
+  uiDepositTime.value = (new Date(new Date() - ((new Date()).getTimezoneOffset() - 24 * 60) * 60 * 1000)).toISOString().replace("Z", "")
 
   uiFundingPolicy.disabled = false
   uiFundingName.disabled = false

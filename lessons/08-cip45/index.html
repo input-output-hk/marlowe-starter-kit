@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="view.css" type="text/css" rel="stylesheet"/>
+    <script src="controller.js" type="application/javascript"> </script>
+    <title>Example of Using Marlowe Runtime with a CIP45 Wallet</title>
+  </head>
+  <body id="uiBody" onload="Controller.initialize()">
+    <h1>Example of Using Marlowe Runtime with a CIP45 Wallet</h1>
+    <p>This example shows how to use a <a href="https://github.com/cardano-foundation/CIPs/pull/395" target="marlowe">CIP-45</a> wallet such as <a href="https://eternl.io/" target="marlowe">Eternl</a> to sign Marlowe transactions. The example contract here simply receives a deposit and sends the funds to the Marlowe role-payout address for the benefit of a specified party.</p>
+    <p>The URL for Marlowe Runtime and the recipient's role token policy ID and asset name are specified as parameters to this page's URL.</p>
+    <ul>
+      <li><code>runtimeUrl=</code> the URL for the Marlowe Runtime instance.</li>
+      <li><code>recipientPolicy=</code> the policy ID for the recipient of the funds.</li>
+      <li><code>recipientName=</code> the asset name for the recipient of the funds.</li>
+    </ul>
+    <p>On <code>mainnet</code>, for example, one can use an <a href="https://mint.handle.me/" target="marlowe">Ada Handle</a> (policy ID <code>f0ff48bbb7bbe9d59a40f1ce90e9e9d0ff5002ec48f232b49ca0fb9a</code>) or an <a href="https://www.adadomains.io/" target="marlowe">Ada Domain</a> (policy ID <code>fc411f546d01e88a822200243769bbc1e1fbdde8fa0f6c5179934edb</code>). Note that for an Ada Handle do not include the leading <code>$</code> in the asset name and for an Ada Domain do not include the <code>.ada</code> suffix in the asset name. The holder of the handle or domain can redeem the funds from the Marlowe payout address using that NFT.</p>
+    <div id="uiPanels">
+      <table>
+        <thead><tr><th colspan="3">CIP45</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><label for="uiMeerkat">P2P address:</label></td>
+            <td><span id="uiMeerkat"/></td>
+            <td>The Meerkat P2P address of this Dapp for this browser.</td>
+          </tr>
+        </tbody>
+        <thead><tr><th colspan="3">Marlowe Runtime</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><label for="uiRuntime">URL</label></td>
+            <td><span id="uiRuntime"/></td>
+            <td>The URL for the Marlowe Runtime instance.</td>
+          </tr>
+        </tbody>
+        <thead><tr><th colspan="3">Parameters for contract</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Depositor's address:</td>
+            <td><span id="uiAddress"/></td>
+            <td>The address of the wallet making the deposit.</td>
+          </tr>
+          <tr>
+            <td>Recipient policy ID:</td>
+            <td><span id="uiRecipientPolicy"/></td>
+            <td>The policy ID for the recipient's role token.</td>
+          </tr>
+          <tr>
+            <td>Recipient token name:</td>
+            <td><span id="uiRecipientName"/></td>
+            <td>The asset name of the recipient's role token.</td>
+          </tr>
+          <tr>
+            <td><label for="uiFundingPolicy">Funding policy ID:</label></td>
+            <td><input id="uiFundingPolicy" type="text" onchange="Controller.makeContract()"/></td>
+            <td>The policy ID for the tokens being sent to the recipient. (Leave blank for sending ada.)</td>
+          </tr>
+          <tr>
+            <td><label for="uiFundingName">Funding token name:</label></td>
+            <td><input id="uiFundingName" type="text" onchange="Controller.makeContract()"/></td>
+            <td>The asset name for the tokens being sent to the recipient. (Leave blank for sending ada.)</td>
+          </tr> 
+          <tr>
+            <td><label for="uiFundingAmount">Funding amount:</label></td>
+            <td><input id="uiFundingAmount" type="number" min="1" value="2000000" onchange="Controller.makeContract()"/></td>
+            <td>The number of tokens being sent to the recipient. (Each ada is 1,000,000 lovelace.)</td>
+          </tr>
+          <tr>
+            <td><label for="uiDepositTime">Deposit deadline:</label></td>
+            <td><input id="uiDepositTime" type="datetime-local" onchange="Controller.makeContract()"/></td>
+            <td>The deadline for deposit the funds being sent to the recipient.</td>
+          </tr>
+        </tbody>
+        <thead><tr><th colspan="3">Transactions</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Contract ID:</td>
+            <td><span id="uiContractId"/></td>
+            <td/>
+          </tr>
+          <tr>
+            <td><button id="uiCreate" type="button" onclick="Controller.createContract()">1. Create contract</button></td>
+            <td><span id="uiCreateTx"/></td>
+            <td/>
+          </tr>
+          <tr>
+            <td><button id="uiDeposit" type="button" onclick="Controller.depositFunds()">2. Deposit funds</button></td>
+            <td><span id="uiDepositTx"/></td>
+            <td/>
+          </tr>
+        </tbody>
+        <thead><tr><th colspan="2">Last message</th></tr></thead>
+        <tbody>
+          <tr>
+            <td id="uiMessage" colspan="2"/>
+          </tr>
+          <tr>
+            <td><button id="uiRestart" type="button" onclick="Controller.restart()">Restart example</button></td>
+            <td/>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

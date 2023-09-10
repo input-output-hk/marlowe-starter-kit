@@ -196,18 +196,22 @@ export async function createContract() {
   , uiRuntime.innerText + "/contracts"
   , "application/vendor.iog.marlowe-runtime.contract-tx-json"
   , function(res) {
-      uiFundingPolicy.disabled = true
-      uiFundingName.disabled = true
-      uiFundingAmount.disabled = true
-      uiDepositTime.disabled = true
-      setContract(res.resource.contractId)
-      contractUrl = uiRuntime.innerText + "/" + res.links.contract
-      const followup = function() {
-        uiCreate.disabled = true
-        uiDeposit.disabled = false
-        setTx(uiCreateTx, contractId.replace(/#.*$/, ""))
+      if (res.resource.safetyErrors.length > 0) {
+	report("Refusing to create contract with safety errors: " + res.resource.safetyErrors.map(x => x.detail).join(" "))
+      } else {
+        uiFundingPolicy.disabled = true
+        uiFundingName.disabled = true
+        uiFundingAmount.disabled = true
+        uiDepositTime.disabled = true
+        setContract(res.resource.contractId)
+        contractUrl = uiRuntime.innerText + "/" + res.links.contract
+        const followup = function() {
+          uiCreate.disabled = true
+          uiDeposit.disabled = false
+          setTx(uiCreateTx, contractId.replace(/#.*$/, ""))
+        }
+        submitTransaction(res.resource.tx.cborHex, contractUrl, waitForConfirmation(contractUrl, followup))
       }
-      submitTransaction(res.resource.tx.cborHex, contractUrl, waitForConfirmation(contractUrl, followup))
     }
   )
 }

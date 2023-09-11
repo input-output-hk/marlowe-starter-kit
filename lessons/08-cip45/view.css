@@ -1,0 +1,41 @@
+
+#uiPanels {
+  display: flex;
+}
+
+#uiMeerkat, #uiWallet, #uiRuntime, #uiAddress, #uiRecipientPolicy, #uiRecipientName {
+  font-family: monospace;
+}
+
+td a {
+  font-family: monospace;
+}
+
+th {
+  text-align: left;
+  padding-top: 30px;
+}
+
+td:nth-child(2) {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+td {
+  vertical-align: top;
+}
+
+table {
+  table-layout: auto;
+}
+
+table input {
+  font-family: monospace;
+  width: 100%;
+}
+
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+  font-family: sans-serif;
+}

@@ -19,37 +19,37 @@
     commands = [
         {
             name = "marlowe-cli";
-            package = inputs.mp.marlowe-cli-exe-marlowe-cli-ghc8107;
+            package = inputs.mp.marlowe-cli;
             category = "1 - Marlowe + Cardano";
         }
         {
             name = "marlowe-finder";
-            package = inputs.mp.marlowe-apps-exe-marlowe-finder-ghc8107;
+            package = inputs.mp.marlowe-finder;
             category = "1 - Marlowe + Cardano";
         }
         {
             name = "marlowe-runtime-cli";
-            package = inputs.mp.marlowe-runtime-cli-exe-marlowe-runtime-cli-ghc8107;
+            package = inputs.mp.marlowe-runtime-cli;
             category = "1 - Marlowe + Cardano";
         }
         {
             name = "marlowe-pipe";
-            package = inputs.mp.marlowe-apps-exe-marlowe-pipe-ghc8107;
+            package = inputs.mp.marlowe-pipe;
             category = "1 - Marlowe + Cardano";
         }
         {
             name = "marlowe-scaling";
-            package = inputs.mp.marlowe-apps-exe-marlowe-scaling-ghc8107;
+            package = inputs.mp.marlowe-scaling;
             category = "1 - Marlowe + Cardano";
         }
         {
             name = "marlowe-oracle";
-            package = inputs.mp.marlowe-apps-exe-marlowe-oracle-ghc8107;
+            package = inputs.mp.marlowe-oracle;
             category = "1 - Marlowe + Cardano";
         }
         {
             name = "cardano-address";
-            package = inputs.cp.cardano-address;
+            package = inputs.cwp.cardano-address;
             category = "1 - Marlowe + Cardano";
         }
         {
@@ -59,7 +59,7 @@
         }
         {
             name = "cardano-wallet";
-            package = inputs.cp.cardano-wallet;
+            package = inputs.cardano-wallet;
             category = "1 - Marlowe + Cardano";
         }
         {

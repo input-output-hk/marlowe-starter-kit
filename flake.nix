@@ -29,8 +29,11 @@
       type = "github";
       owner = "input-output-hk";
       repo = "marlowe-cardano";
-      ref = "runtime@v0.0.4";
+      ref = "marlowe-cli@v0.1.0.0";
     };
+    cardano-node.follows = "marlowe/cardano-node";
+    cardano-wallet.url =
+      "github:cardano-foundation/cardano-wallet?ref=v2023-07-18";
     cardano-world.follows = "marlowe/cardano-world";
     std.url = "github:divnix/std";
     std.inputs.n2c.follows = "n2c";
@@ -38,22 +41,23 @@
     std.inputs.devshell.url = "github:numtide/devshell";
   };
 
-  outputs = { self, flake-compat, flake-utils, nixpkgs, jupyenv, marlowe, cardano-world, std, n2c }:
+  outputs = { self, flake-compat, flake-utils, nixpkgs, jupyenv, marlowe, cardano-world, cardano-node, cardano-wallet, std, n2c }:
     flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
         mp = marlowe.packages.${system};
-        cp = cardano-world.${system}.cardano.packages;
+        cwp = cardano-world.${system}.cardano.packages;
+        cp = cardano-node.packages.${system};
         extraPackages = p: [
-          mp.marlowe-runtime-cli-exe-marlowe-runtime-cli-ghc8107
-          mp.marlowe-cli-exe-marlowe-cli-ghc8107
-          mp.marlowe-apps-exe-marlowe-finder-ghc8107
-          mp.marlowe-apps-exe-marlowe-oracle-ghc8107
-          mp.marlowe-apps-exe-marlowe-pipe-ghc8107
-          mp.marlowe-apps-exe-marlowe-scaling-ghc8107
-          cp.cardano-address
+          mp.marlowe-runtime-cli
+          mp.marlowe-cli
+          mp.marlowe-finder
+          mp.marlowe-oracle
+          mp.marlowe-pipe
+          mp.marlowe-scaling
+          cwp.cardano-address
           cp.cardano-cli
-          cp.cardano-wallet
+          cardano-wallet.packages.${system}.cardano-wallet
           p.gcc
           p.z3
           p.coreutils
@@ -120,7 +124,9 @@
             inherit jupyterlab;
             inherit pkgs;
             mp = marlowe.packages.${system};
-            cp = cardano-world.${system}.cardano.packages;
+            cwp = cardano-world.${system}.cardano.packages;
+            cp = cardano-node.packages.${system};
+            cardano-wallet = cardano-wallet.packages.${system}.cardano-wallet;
             extraP = extraPackages pkgs;
             std = std.${system};
           };

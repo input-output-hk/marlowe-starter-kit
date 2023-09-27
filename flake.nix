@@ -29,7 +29,7 @@
       type = "github";
       owner = "input-output-hk";
       repo = "marlowe-cardano";
-      ref = "runtime@v0.0.5-rc1";
+      ref = "marlowe-cli@v0.1.0.0";
     };
     cardano-node.follows = "marlowe/cardano-node";
     cardano-wallet.url =

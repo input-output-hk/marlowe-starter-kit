@@ -7072,16 +7072,16 @@
         "std": "std_6"
       },
       "locked": {
-        "lastModified": 1695515054,
-        "narHash": "sha256-Fv2MO8A+ohXx0pBtHshtAkPNrbahfRtcpEvzzlPJ2w0=",
+        "lastModified": 1695763220,
+        "narHash": "sha256-LGyp6c2QPSZeR/8EfwXfnpPrN8Wd8R5k+FroZ/bVI/Q=",
         "owner": "input-output-hk",
         "repo": "marlowe-cardano",
-        "rev": "39eecd8239237861c972b488f6c05f8756e17892",
+        "rev": "fe834df4fc1438f0e6bae841a09ed077fa5a0492",
         "type": "github"
       },
       "original": {
         "owner": "input-output-hk",
-        "ref": "runtime@v0.0.5-rc1",
+        "ref": "marlowe-cli@v0.1.0.0",
         "repo": "marlowe-cardano",
         "type": "github"
       }

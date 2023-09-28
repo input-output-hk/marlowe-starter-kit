@@ -4,14 +4,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="view.css" type="text/css" rel="stylesheet"/>
     <script src="controller.js" type="application/javascript"> </script>
-    <title>Donate via Marleon</title>
+    <title>Send Tokens via Marleon</title>
   </head>
-  <body id="uiBody" style="color:darkblue;background-color:aliceblue;font-size:smaller" onload="Controller.initialize()">
-    <h1>Donate via Marleon</h1>
+  <body id="uiBody" onload="Controller.initialize()">
+    <h1>Send Tokens via Marleon</h1>
     <p>Marleon is a Marlowe contract for sending tokens to the holder of a Marlowe role token.</p>
     <ol>
-      <li>Paste the CardanoConnect address <span id="uiMeerkat"></span> into the <code>ConnectionId</code> field on the <code>CardanoConnect</code> settings page of your CIP45-enabled wallet.</li>
-      <li>You will donate <input id="uiFundingAmount" type="number" min="2000000" value="2000000" onchange="Controller.makeContract()"/> testnet lovelace (1 ada = 1,000,000 lovelace) to the holder of the NFT with policy ID <span id="uiRecipientPolicy"></span> and token name <span id="uiRecipientName"></span>.</li>
+      <li id="uiInstructionsCIP45">Paste the CardanoConnect address <span id="uiMeerkat"></span> into the <code>ConnectionId</code> field on the <code>CardanoConnect</code> settings page of your CIP45-enabled wallet.</li>
+      <li>You will donate <input id="uiFundingAmount" type="number" min="2000000" value="2000000" onchange="Controller.makeContract()"/> lovelace (1 ada = 1,000,000 lovelace) to the holder of the NFT with policy ID <span id="uiRecipientPolicy"></span> and token name <span id="uiRecipientName"></span>.</li>
       <li><button id="uiCreate" type="button" onclick="Controller.createContract()">Create the contract</button> for making the donation via Marlowe.</li>
       <li>Sign the creation transaction in your CIP45 wallet.</li>
       <li>Wait for the creation transaction to be confirmed: <span id="uiContractId" style="font-family:monospace"></span></li>
@@ -23,6 +23,16 @@
       <li>Thank you for donating test ada!</li>
     </ol>
     <p><em id="uiMessage"/></p>
+    <hr/>
+    <div style="font-size:smaller">
+      <p>The URL for Marlowe Runtime and the recipient's role token policy ID and asset name are specified as parameters to this page's URL.</p>
+      <ul>
+        <li><code>runtimeUrl=</code> the URL for the Marlowe Runtime instance.</li>
+        <li><code>recipientPolicy=</code> the policy ID for the recipient of the funds.</li>
+        <li><code>recipientName=</code> the asset name for the recipient of the funds.</li>
+      </ul>
+      <p>On <code>mainnet</code>, for example, one can use an <a href="https://mint.handle.me/" target="marlowe">Ada Handle</a> (policy ID <code>f0ff48bbb7bbe9d59a40f1ce90e9e9d0ff5002ec48f232b49ca0fb9a</code>) or an <a href="https://www.adadomains.io/" target="marlowe">Ada Domain</a> (policy ID <code>fc411f546d01e88a822200243769bbc1e1fbdde8fa0f6c5179934edb</code>) for the recipient. Note that for an Ada Handle do not include the <code>$</code> prefix in the asset name and for an Ada Domain do not include the <code>.ada</code> suffix in the asset name. The holder of the handle or domain can redeem the funds from the Marlowe payout address using their NFT using the <a href="https://github.com/input-output-hk/marlowe-payouts" target="marlowe">Marlowe Payouts</a> dapp.</p>
+    </div>
     <ul style="display:none">
       <li id="uiWallet"/>
       <li id="uiRuntime"/>

@@ -17,6 +17,9 @@ import {bech32} from "bech32"
 let cardanoScanUrl = null
 let marloweScanUrl = null
 
+// Whether to use CIP45.
+const useCIP45 = false
+
 // Connection to the CIP30 wallet.
 let wallet = null
 
@@ -199,13 +202,13 @@ export async function createContract() {
       if (res.resource.safetyErrors.length > 0) {
 	report("Refusing to create contract with safety errors: " + res.resource.safetyErrors.map(x => x.detail).join(" "))
       } else {
-        uiFundingPolicy.disabled = true
-        uiFundingName.disabled = true
-        uiFundingAmount.disabled = true
-        uiDepositTime.disabled = true
         setContract(res.resource.contractId)
         contractUrl = uiRuntime.innerText + "/" + res.links.contract
         const followup = function() {
+          uiFundingPolicy.disabled = true
+          uiFundingName.disabled = true
+          uiFundingAmount.disabled = true
+          uiDepositTime.disabled = true
           uiCreate.disabled = true
           uiDeposit.disabled = false
           setTx(uiCreateTx, contractId.replace(/#.*$/, ""))
@@ -256,6 +259,10 @@ export async function depositFunds() {
     ]
   , function(tx) {
       return function() {
+        uiFundingPolicy.disabled = false
+        uiFundingName.disabled = false
+        uiFundingAmount.disabled = false
+        uiDepositTime.disabled = false
         uiCreate.disabled = false
         uiDeposit.disabled = true
         setTx(uiDepositTx, tx)
@@ -368,46 +375,62 @@ export async function initialize() {
   uiCreate.disabled = true
   uiDeposit.disabled = true
 
-  const dAppConnect = new CardanoPeerConnect.DAppPeerConnect({
-    dAppInfo: {
-      name: "Marlowe CIP45 Example",
-      url: "https://examples.marlowe.app:8080/cip45.html"
-    },
-    onApiInject: function(name, addr) {
-      status("CardanoConnect API injected for wallet \"" + name + "\".")
-      cardano[name].enable().then(function(n) {
-        wallet = n
-        wallet.getChangeAddress().then(function(a) {
-          setAddress(a)
-          makeContract()
-          uiCreate.disabled = false
-        }).catch(function(error) {
-          uiCreate.disabled = true
-          report(error)
-        })
-  }).catch(function(error) {
-    report(error)
-  })
-    },
-    onApiEject: function(name, addr) {
-      status("CardanoConnect API ejected for wallet \"" + name + "\".")
-    },
-    verifyConnection: function(walletInfo, callback) {
-      status("Verifying connection for wallet \"" + walletInfo.name + "\" at " + walletInfo.address + ".")
-      callback(true, true)
-    },
-    onConnect: function(addr, walletInfo) {
-      uiWallet.innerText = addr
-      status("Connected to wallet at " + addr + ".")
-      uiCreate.disabled = true
-    },
-    onDisconnect: function() {
-      uiWallet.innerText = ""
-      status("Disconnected from wallet.")
-      uiCreate.disabled = true
-    },
-  })
-  uiMeerkat.innerText = dAppConnect.getAddress()
+  if (useCIP45) {
+    const dAppConnect = new CardanoPeerConnect.DAppPeerConnect({
+      dAppInfo: {
+        name: "Marlowe CIP45 Example",
+        url: "https://examples.marlowe.app:8080/cip45.html"
+      },
+      onApiInject: function(name, addr) {
+        status("CardanoConnect API injected for wallet \"" + name + "\".")
+        cardano[name].enable().then(function(n) {
+          wallet = n
+          wallet.getChangeAddress().then(function(a) {
+            setAddress(a)
+            makeContract()
+            uiCreate.disabled = false
+          }).catch(function(error) {
+            uiCreate.disabled = true
+            report(error)
+          })
+    }).catch(function(error) {
+      report(error)
+    })
+      },
+      onApiEject: function(name, addr) {
+        status("CardanoConnect API ejected for wallet \"" + name + "\".")
+      },
+      verifyConnection: function(walletInfo, callback) {
+        status("Verifying connection for wallet \"" + walletInfo.name + "\" at " + walletInfo.address + ".")
+        callback(true, true)
+      },
+      onConnect: function(addr, walletInfo) {
+        uiWallet.innerText = addr
+        status("Connected to wallet at " + addr + ".")
+        uiCreate.disabled = true
+      },
+      onDisconnect: function() {
+        uiWallet.innerText = ""
+        status("Disconnected from wallet.")
+        uiCreate.disabled = true
+      },
+    })
+    uiMeerkat.innerText = dAppConnect.getAddress()
+  } else {
+    uiInstructionsCIP45.style.display = "none"
+    cardano.eternl.enable().then(function(n) {
+      wallet = n
+      wallet.getChangeAddress().then(function(a) {
+        setAddress(a)
+        makeContract()
+        uiCreate.disabled = false
+      }).catch(function(error) {
+        report(error)
+      })
+    }).catch(function(error) {
+      report(error)
+    })
+  }
 
 }
 

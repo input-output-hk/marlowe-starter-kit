@@ -29,6 +29,7 @@ Lesson | Duration | Prerequsites | Video
 [6 - Simple web application using a CIP-30 wallet](lessons/06-cip30/) | 5 mins | [Preliminaries](setup/00-local-environment.ipynb), [Lesson 5](lessons/05-swap-rest/) | [video](https://youtu.be/EsILiHiNZWk)
 [7 - Checking the safety of a Marlowe contract](lessons/07-safety/) | 10 mins | [Preliminaries](setup/00-local-environment.ipynb) |
 [8 - Experimental web application using a CIP-45 wallet](lessons/08-cip45/) | 10 mins | [Preliminaries](setup/00-local-environment.ipynb) | [video](https://youtu.be/3cR8tq0WE_8)
+[9 - Minting with Marlowe Tools](lessons/09-minting/) | 25 mins | [Preliminaries](setup/00-local-environment.ipynb) | [video](https://youtu.be/S0MOipqXpmQ)
 
 ## Under the Hood
 

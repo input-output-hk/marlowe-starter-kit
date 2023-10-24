@@ -204,7 +204,7 @@ services:
     - RUNTIME_PORT=3701
     depends_on:
       - proxy
-    image: ghcr.io/input-output-hk/marlowe-web-server:0.0.5
+    image: ghcr.io/input-output-hk/marlowe-web-server:0.0.5.1
     restart: unless-stopped
     ports:
     - 3780:3780

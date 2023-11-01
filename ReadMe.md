@@ -30,6 +30,7 @@ Lesson | Duration | Prerequsites | Video
 [7 - Checking the safety of a Marlowe contract](lessons/07-safety/) | 10 mins | [Preliminaries](setup/00-local-environment.ipynb) |
 [8 - Experimental web application using a CIP-45 wallet](lessons/08-cip45/) | 10 mins | [Preliminaries](setup/00-local-environment.ipynb) | [video](https://youtu.be/3cR8tq0WE_8)
 [9 - Minting with Marlowe Tools](lessons/09-minting/) | 25 mins | [Preliminaries](setup/00-local-environment.ipynb) | [video](https://youtu.be/S0MOipqXpmQ)
+[10 - Open Roles](lessons/10-open-roles/) | 27 mins | [Preliminaries](setup/00-local-environment.ipynb) | [video](https://drive.google.com/file/d/1g17LKLJ4cyizfUJDrM44ChaNb6otOce0/view?usp=sharing)
 
 ## Under the Hood
 

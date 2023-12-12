@@ -7186,16 +7186,16 @@
         "std": "std_6"
       },
       "locked": {
-        "lastModified": 1701889568,
-        "narHash": "sha256-auGu3qfecHBHgynM+GnwhkQmY+tD8Icjgh3gZOrbfhs=",
+        "lastModified": 1701986535,
+        "narHash": "sha256-OH25pSj5Kh8Osf9c8PTxgGg2lhtCyh8vrR+2Xes/ISI=",
         "owner": "input-output-hk",
         "repo": "marlowe-cardano",
-        "rev": "1a8fb91d09499e9b91a99d4a5434a5521c7ecc36",
+        "rev": "db25114ec91ccdab3228b99e791fd7232f8625bf",
         "type": "github"
       },
       "original": {
         "owner": "input-output-hk",
-        "ref": "runtime@v0.0.6-rc1",
+        "ref": "runtime@v0.0.6",
         "repo": "marlowe-cardano",
         "type": "github"
       }

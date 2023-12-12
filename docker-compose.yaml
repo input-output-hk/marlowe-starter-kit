@@ -70,7 +70,7 @@ services:
         condition: service_healthy
       postgres:
         condition: service_healthy
-    image: ghcr.io/input-output-hk/marlowe-chain-indexer:0.0.6-rc2
+    image: ghcr.io/input-output-hk/marlowe-chain-indexer:0.0.6
     user: 0:0
     restart: unless-stopped
     volumes:
@@ -95,7 +95,7 @@ services:
         condition: service_started
       postgres:
         condition: service_healthy
-    image: ghcr.io/input-output-hk/marlowe-chain-sync:0.0.6-rc2
+    image: ghcr.io/input-output-hk/marlowe-chain-sync:0.0.6
     user: 0:0
     restart: unless-stopped
     volumes:
@@ -117,7 +117,7 @@ services:
         condition: service_started
       postgres:
         condition: service_healthy
-    image: ghcr.io/input-output-hk/marlowe-indexer:0.0.6-rc2
+    image: ghcr.io/input-output-hk/marlowe-indexer:0.0.6
     restart: unless-stopped
 
   sync:
@@ -139,7 +139,7 @@ services:
         condition: service_started
       postgres:
         condition: service_healthy
-    image: ghcr.io/input-output-hk/marlowe-sync:0.0.6-rc2
+    image: ghcr.io/input-output-hk/marlowe-sync:0.0.6
     restart: unless-stopped
 
   tx:
@@ -156,7 +156,7 @@ services:
     depends_on:
       - chain-sync
       - contract
-    image: ghcr.io/input-output-hk/marlowe-tx:0.0.6-rc2
+    image: ghcr.io/input-output-hk/marlowe-tx:0.0.6
     restart: unless-stopped
 
   contract:
@@ -173,7 +173,7 @@ services:
     - HTTP_PORT=3787
     volumes:
       - marlowe-contract-store:/store
-    image: ghcr.io/input-output-hk/marlowe-contract:0.0.6-rc2
+    image: ghcr.io/input-output-hk/marlowe-contract:0.0.6
     restart: unless-stopped
 
   proxy:
@@ -197,7 +197,7 @@ services:
       - sync
       - tx
       - contract
-    image: ghcr.io/input-output-hk/marlowe-proxy:0.0.6-rc2
+    image: ghcr.io/input-output-hk/marlowe-proxy:0.0.6
     restart: unless-stopped
     ports:
     - 3700:3700
@@ -210,7 +210,7 @@ services:
     - RUNTIME_PORT=3701
     depends_on:
       - proxy
-    image: ghcr.io/input-output-hk/marlowe-web-server:0.0.6-rc2
+    image: ghcr.io/input-output-hk/marlowe-web-server:0.0.6
     restart: unless-stopped
     ports:
     - 3780:3780

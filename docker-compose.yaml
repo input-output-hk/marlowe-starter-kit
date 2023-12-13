@@ -229,7 +229,7 @@ services:
     - PGPASSWORD=postgres
     depends_on:
       - web-server
-    image: ghcr.io/input-output-hk/marlowe-starter-kit:2023-aug-23
+    image: ghcr.io/input-output-hk/marlowe-starter-kit:2023-dec-13
     volumes:
       - shared:/ipc
       - ./setup:/notebook/setup

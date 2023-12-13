@@ -24,12 +24,17 @@
     };
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.follows = "marlowe/iogx/nixpkgs";
-    jupyenv.url = "github:tweag/jupyenv";
+    jupyenv = {
+      type = "github";
+      owner = "tweag";
+      repo = "jupyenv";
+      ref = "3ad2c9512c9efd586cf63adde454e734a8ce049c";
+    };
     marlowe = {
       type = "github";
       owner = "input-output-hk";
       repo = "marlowe-cardano";
-      ref = "marlowe-cli@v0.1.0.0";
+      ref = "runtime@v0.0.6";
     };
     cardano-node.follows = "marlowe/cardano-node";
     cardano-wallet.url =

@@ -179,7 +179,7 @@ export async function createContract() {
     , tags : {}
     }
   , uiRuntime.value + "/contracts"
-  , "application/vendor.iog.marlowe-runtime.contract-tx-json"
+  , "application/json"
   , function(res) {
       uiReceiver.disabled = true
       uiAmount.disabled = true
@@ -211,7 +211,7 @@ async function applyInputs(operation, inputs, followup) {
     , tags : {}
     }
   , contractUrl + "/transactions"
-  , "application/vendor.iog.marlowe-runtime.apply-inputs-tx-json"
+  , "application/json"
   , function(res) {
       transactionUrl = uiRuntime.value + "/" + res.links.transaction
       const tx = res.resource.transactionId
@@ -286,7 +286,7 @@ function submitTransaction(cborHex, url, wait) {
     xhttp.open("PUT", url)
     xhttp.setRequestHeader("Content-Type", "application/json")
     const req = {
-      type : "ShelleyTxWitness BabbageEra"
+      type : "TxWitness Set BabbageEra"
     , description : ""
     , cborHex : witness
     }
